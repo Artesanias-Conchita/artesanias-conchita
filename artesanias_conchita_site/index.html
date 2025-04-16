@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artesanías Conchita</title>
+  <meta name="description" content="Artesanías hechas con amor en El Salvador.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="encabezado">
+      <img src="logo.png" alt="Logo Artesanías Conchita" class="logo">
+      <h1>Artesanías Conchita</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#faq">Preguntas Frecuentes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio">
+      <h2>Artesanías Conchita</h2>
+      <h3>Negocio de venta de artesanías</h3>
+      <p class="justificado">Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica, textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.</p>
+    </section>
+
+    <section id="historia">
+      <h2>Historia de Artesanías Conchita</h2>
+      <p class="justificado">En la década de los 90, Celenia inició su camino en el mundo del comercio con la venta de zapatos. Sin embargo, ante el aumento de la competencia, su negocio no prosperó. Fue entonces cuando su madre le sugirió incursionar en la venta de artesanías, un mercado poco explorado en Usulután...</p>
+
+      <div class="mision-vision">
+        <div class="bloque">
+          <h3>Misión</h3>
+          <p class="justificado">"En Artesanías Conchita, nuestra misión es transformar la tradición en creatividad..."</p>
+        </div>
+        <div class="bloque">
+          <h3>Visión</h3>
+          <p class="justificado">"En Artesanías Conchita, aspiramos a ser el referente principal en el mundo de la artesanía..."</p>
+        </div>
+      </div>
+
+      <h3 class="centrado">Valores de la empresa</h3>
+      <ul class="valores">
+        <li><strong>Honestidad:</strong> Nos comprometemos a brindar información clara y veraz...</li>
+        <li><strong>Amabilidad:</strong> Atendemos a cada persona con cortesía y calidez...</li>
+        <li><strong>Respeto:</strong> Valoramos la diversidad de nuestros clientes y colaboradores...</li>
+        <li><strong>Integridad:</strong> Actuamos con transparencia y ética...</li>
+        <li><strong>Responsabilidad:</strong> Nos esforzamos por cumplir con nuestros compromisos...</li>
+      </ul>
+    </section>
+
+    <section id="productos">
+      <h2>Productos</h2>
+      <input type="text" id="buscador" placeholder="Buscar productos...">
+      <select id="filtro">
+        <option value="">Todos</option>
+        <option value="gorras">Gorras</option>
+        <option value="trajes">Trajes típicos</option>
+        <option value="llaveros">Llaveros</option>
+      </select>
+      <div id="lista-productos">
+        <div class="producto" data-categoria="gorras">Gorra artesanal bordada a mano.</div>
+        <div class="producto" data-categoria="trajes">Traje típico de San Miguel.</div>
+        <div class="producto" data-categoria="llaveros">Llavero de madera pintado a mano.</div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p><strong>Dirección:</strong> 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután, Depto. Usulután</p>
+      <iframe src="https://www.google.com/maps?q=Mercado+Municipal+No.+1,+Usulut%C3%A1n,+El+Salvador&output=embed" width="100%" height="300" style="border:0;" allowfullscreen=""></iframe>
+      <a href="https://www.facebook.com/profile.php?id=100063916399476" target="_blank" class="boton">Ver Facebook del negocio</a>
+      <p>Usuario: Artesanías Conchita</p>
+    </section>
+
+    <section id="faq">
+      <h2>Preguntas Frecuentes</h2>
+      <ul class="faq">
+        <li><strong>¿Pregunta 1?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 2?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 3?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 4?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 5?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 6?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 7?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 8?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 9?</strong> Respuesta aquí.</li>
+        <li><strong>¿Pregunta 10?</strong> Respuesta aquí.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Artesanías Conchita</p>
+  </footer>
+
+  <script>
+    const buscador = document.getElementById('buscador');
+    const filtro = document.getElementById('filtro');
+    const productos = document.querySelectorAll('#lista-productos .producto');
+
+    function filtrar() {
+      const texto = buscador.value.toLowerCase();
+      const categoria = filtro.value;
+      productos.forEach(prod => {
+        const nombre = prod.textContent.toLowerCase();
+        const cat = prod.getAttribute('data-categoria');
+        const coincideTexto = nombre.includes(texto);
+        const coincideCategoria = categoria === '' || cat === categoria;
+        prod.style.display = (coincideTexto && coincideCategoria) ? 'block' : 'none';
+      });
+    }
+
+    buscador.addEventListener('input', filtrar);
+    filtro.addEventListener('change', filtrar);
+  </script>
+</body>
+</html>
