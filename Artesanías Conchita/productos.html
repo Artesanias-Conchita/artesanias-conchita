@@ -35,12 +35,11 @@
 
     h1 {
       text-align: center;
-      margin: 5px 0 20px; /* Subido un poco más */
+      margin: 5px 0 20px;
     }
 
-    /* Galería de productos */
     main {
-      margin-top: 40px; /* Separación de la barra de navegación */
+      margin-top: 40px;
     }
 
     .galeria-productos {
@@ -76,56 +75,91 @@
       font-size: 0.95em;
       color: #666;
       margin-top: 5px;
-      text-align: justify; /* Justificación del texto */
+      text-align: justify;
+    }
+
+    .filtros {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filtros select,
+    .filtros input {
+      padding: 10px;
+      margin: 0 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 200px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 150px;">
-    <h1>Productos</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="historia.html">Historia</a>
-      <a href="productos.html">Productos</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="preguntas.html">Preguntas</a>
-    </nav>
-  </header>
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: #f0f0f0;">
+  <div style="display: flex; align-items: center;">
+    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 80px; margin-right: 10px;">
+    <h1 style="margin: 0; font-size: 24px;">Artesanías Conchita</h1>
+  </div>
+  <nav style="display: flex;">
+    <a href="index.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Inicio</a>
+    <a href="historia.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Historia</a>
+    <a href="productos.html" class="active" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Productos</a>
+    <a href="contacto.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Contacto</a>
+    <a href="preguntas.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; border-radius: 5px; font-weight: bold;">Preguntas</a>
+  </nav>
+</header>
+
+<h2 style="text-align: center; margin-top: 20px;">Productos</h2>
+
+<div class="filtros" style="text-align: center; margin-bottom: 30px;">
+  <select id="categoria" style="padding: 8px; margin: 0 10px;">
+    <option value="todas">Todas las categorías</option>
+    <option value="vestidos">Vestidos</option>
+    <option value="llaveros">Llaveros</option>
+    <option value="gorras">Gorras</option>
+  </select>
+
+  <input type="text" id="buscador" placeholder="Buscar productos..." style="padding: 8px; width: 200px;">
+</div>
 
   <main>
     <div class="galeria-productos">
 
-      <div class="producto">
+      <div class="producto" data-categoria="vestidos">
         <img src="img/productos/producto1.jpeg" alt="Vestido típico salvadoreño">
         <h3>Vestido típico salvadoreño</h3>
-        <p>Vestido tradicional con los colores de la bandera de El Salvador, adornado con encajes y escudos nacionales. Ideal para danzas folklóricas y eventos patrios.</p>
+        <p>Vestido tradicional con los colores de la bandera de El Salvador, adornado con encajes y escudos nacionales.</p>
       </div>
 
-      <div class="producto">
-        <img src="img/productos/producto2.jpeg" alt="Llavero de colibrí con mostacillas">
+      <div class="producto" data-categoria="llaveros">
+        <img src="img/productos/producto2.jpeg" alt="Llavero artesanal de colibrí">
         <h3>Llavero artesanal de colibrí</h3>
-        <p>Hecho a mano con mostacillas de colores, inspirado en la fauna salvadoreña. Este llavero representa al colibrí, un símbolo de energía y alegría, elaborado con gran precisión y dedicación por artesanas locales.</p>
+        <p>Hecho a mano con mostacillas de colores, inspirado en la fauna salvadoreña.</p>
       </div>    
 
-      <div class="producto">
-        <img src="img/productos/producto3.jpeg" alt="Gorra estilo artesanal 'El Salvador' con diseño taurino">
-        <h3>Gorra estilo artesanal "El Salvador" con diseño taurino</h3>
-        <p>Gorra estilo artesanal con frente tipo fibra tejida y parte trasera de malla. Incluye bordado del escudo de El Salvador, letras decorativas "E S", y un diseño llamativo con la imagen de un toro, patrones culturales y detalles bordados en tonos vivos. Perfecta como recuerdo folclórico o accesorio con identidad salvadoreña.</p>
+      <div class="producto" data-categoria="gorras">
+        <img src="img/productos/producto3.jpeg" alt="Gorra artesanal taurina">
+        <h3>Gorra estilo artesanal con diseño taurino</h3>
+        <p>Gorra con bordados culturales salvadoreños y diseño de toro.</p>
       </div>
 
-      <div class="producto">
+      <div class="producto" data-categoria="vestidos">
         <img src="img/productos/producto4.jpeg" alt="Vestido típico infantil azul">
         <h3>Vestido típico infantil azul</h3>
-        <p>Hermoso vestido tradicional para niña, confeccionado en tela ligera color azul, con bordados artesanales blancos y detalles de encaje floral. Incluye elástico en cintura y pecho para un ajuste cómodo, ideal para eventos culturales, celebraciones patrias o como recuerdo representativo de El Salvador.</p>
+        <p>Vestido tradicional para niña, con bordados artesanales y encaje floral.</p>
       </div>
 
-      <div class="producto">
-        <img src="img/productos/producto5.jpeg" alt="Llavero artesanal de delfín con cuentas">
+      <div class="producto" data-categoria="llaveros">
+        <img src="img/productos/producto5.jpeg" alt="Llavero artesanal de delfín">
         <h3>Llavero artesanal de delfín con cuentas</h3>
-        <p>Llavero elaborado a mano con cuentas de vidrio en tonos azul y blanco, representando un delfín, animal asociado al mar salvadoreño. Ideal como recuerdo típico, adorno de mochila o regalo artesanal que resalta la creatividad local.</p>
+        <p>Llavero hecho a mano con cuentas azules representando un delfín del mar salvadoreño.</p>
       </div>
+      
+      <div class="producto" data-categoria="vestimenta">
+       <img src="img/productos/producto7.jpeg" alt="Vestido típico salvadoreño azul">
+       <h3>Vestido típico salvadoreño azul</h3>
+       <p>Vestido tradicional de El Salvador, confeccionado en tela satinada azul con encajes blancos, ideal para presentaciones culturales o celebraciones patrias.</p>
+       </div>
 
     </div>
   </main>
@@ -134,5 +168,6 @@
     <p>© 2025 Artesanías Conchita</p>
   </footer>
 
+  <script src="filtros.js"></script>
 </body>
 </html>

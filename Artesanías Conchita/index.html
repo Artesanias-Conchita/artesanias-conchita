@@ -12,12 +12,31 @@
     }
 
     header {
-      text-align: center;
-      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      margin-bottom: 20px; /* Añadido margen inferior para separar del contenido */
+    }
+
+    header div { /* Estilos para el contenedor del logo y el nombre */
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      width: 80px;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
     }
 
     nav {
-      margin-top: 10px;
+      display: flex;
     }
 
     nav a {
@@ -25,16 +44,21 @@
       color: #444;
       background-color: #fadadd;
       padding: 10px 15px;
-      margin: 5px;
+      margin-left: 5px;
       border-radius: 5px;
       font-weight: bold;
+    }
+
+    nav a.active {
+      background-color: #e0b0b0; /* Resalta la pestaña activa */
+      color: #fff;
     }
 
     nav a:hover {
       background-color: #ffd8a9;
     }
 
-    h1, h2 {
+    h2 {
       text-align: center;
     }
 
@@ -43,15 +67,22 @@
       max-width: 800px;
       text-align: justify;
     }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 150px;">
-    <h1>Artesanías Conchita</h1>
+    <div>
+      <img src="img/logo.png" alt="Logo de Artesanías Conchita">
+      <h1>Artesanías Conchita</h1>
+    </div>
     <nav>
-      <a href="index.html">Inicio</a>
+      <a href="index.html" class="active">Inicio</a>
       <a href="historia.html">Historia</a>
       <a href="productos.html">Productos</a>
       <a href="contacto.html">Contacto</a>
@@ -59,16 +90,21 @@
     </nav>
   </header>
 
+  <div style="text-align: center; margin-top: 50px;">
+    <h2 style="font-size: 2.5em; color: #555; margin-bottom: 10px;">Bienvenido a Artesanías Conchita</h2>
+    <p style="font-size: 1.2em; color: #777;">Descubre nuestras hermosas creaciones.</p>
+  </div>
+
   <main>
     <section class="intro">
       <h2 style="text-align: center;">Negocio de venta de artesanías</h2>
-      <p>
+     <p>
         Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.
       </p>
     </section>
   </main>
 
-  <footer style="text-align: center; margin-top: 30px;">
+  <footer>
     <p>© 2025 Artesanías Conchita</p>
   </footer>
 
