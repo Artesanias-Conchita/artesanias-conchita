@@ -133,3 +133,25 @@ footer {
   color: #666;
   margin-top: 5px;
 }
+
+.carousel-container {
+  overflow: hidden; /* Oculta las imágenes que se salen del contenedor */
+  width: 200px; /* Define un ancho pequeño para tu carrusel */
+  height: auto; /* La altura se ajustará automáticamente */
+  margin: 20px auto; /* Centra el carrusel en la página (opcional) y añade margen superior/inferior */
+}
+
+.carousel-slide {
+  display: none; /* Oculta todas las imágenes por defecto */
+  width: 100%; /* Asegura que la imagen ocupe el ancho del contenedor */
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%; /* La imagen se ajusta al ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.carousel-slide:first-child {
+  display: block; /* Muestra la primera imagen */
+}

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inicio | Artesanías Conchita</title>
+  <link rel="stylesheet" href="estilos.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -72,11 +73,11 @@
       text-align: center;
       margin-top: 30px;
     }
-  </style>
+    </style>
 </head>
 <body>
 
-  <header>
+<header>
     <div>
       <img src="img/logo.png" alt="Logo de Artesanías Conchita">
       <h1>Artesanías Conchita</h1>
@@ -88,8 +89,39 @@
       <a href="contacto.html">Contacto</a>
       <a href="preguntas.html">Preguntas</a>
     </nav>
+  
   </header>
 
+  <div class="carousel-container">
+    <div class="carousel-slide">
+      <img src="img/Inicio/Inicio.jpg" alt="Imagen 1">
+    </div>
+    <div class="carousel-slide">
+      <img src="img/Inicio/Inicio1.jpg" alt="Imagen 2">
+    </div>
+    <div class="carousel-slide">
+      <img src="img/Inicio/Inicio2.jpg" alt="Imagen 3">
+    </div>
+    <div class="carousel-slide">
+      <img src="img/Inicio/Inicio3.jpg" alt="Imagen 4">
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+    const numSlides = slides.length;
+
+    function nextSlide() {
+      slides[slideIndex].style.display = "none";
+      slideIndex = (slideIndex + 1) % numSlides;
+      slides[slideIndex].style.display = "block";
+    }
+
+    // Cambia de imagen cada 3 segundos (3000 milisegundos)
+    setInterval(nextSlide, 3000);
+  </script>
+  
   <div style="text-align: center; margin-top: 50px;">
   <h2 style="font-size: 2.5em; color: #000 !important; margin-bottom: 10px; font-weight: bold;">
     Bienvenido a Artesanías Conchita
