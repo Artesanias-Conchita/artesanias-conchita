@@ -1,9 +1,9 @@
 :root { 
-  --color-principal: #fadadd;
-  --color-secundario: #a7d7c5;
-  --color-acento: #ffd8a9;
-  --color-fondo: #fff7f0;
-  --color-texto: #444;
+  --color-principal: #B8E2C8;     /* Verde menta suave */
+  --color-secundario: #CDE8F6;    /* Azul cielo pastel */
+  --color-acento: #FBCBA4;        /* Naranja melón */
+  --color-fondo: #B8E2C8;         /* Mismo que el fondo principal */
+  --color-texto: #000000;         /* Texto siempre negro */
 }
 
 body {
@@ -50,6 +50,11 @@ header {
   font-weight: bold;
 }
 
+.menu a:hover {
+  color: var(--color-acento);  /* Cambiar color de texto al pasar el mouse */
+  text-decoration: underline;  /* Agregar subrayado */
+}
+
 main {
   padding: 2em;
 }
@@ -77,9 +82,19 @@ main {
 
 footer {
   background-color: var(--color-secundario);
-  color: #000;
+  color: var(--color-texto);
   text-align: center;
   padding: 1em;
+  font-weight: 600;  /* Añadir un poco de énfasis al texto */
+}
+
+footer a {
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--color-acento);  /* Cambiar color de los enlaces */
 }
 
 /* Galería de imágenes para la pestaña historia */
@@ -98,6 +113,10 @@ footer {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.galeria-historia img:hover {
+  transform: scale(1.05);  /* Efecto de agrandar al pasar el mouse */
+}
+
 /* Galería de productos */
 .galeria-productos {
   display: flex;
@@ -114,6 +133,11 @@ footer {
   text-align: center;
   background-color: var(--color-fondo);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;  /* Efecto de transición */
+}
+
+.producto:hover {
+  transform: scale(1.05);  /* Agrandar ligeramente al pasar el mouse */
 }
 
 .producto img {
@@ -154,4 +178,15 @@ footer {
 
 .carousel-slide:first-child {
   display: block; /* Muestra la primera imagen */
+}
+
+/* Adaptabilidad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .producto {
+    width: 90%; /* Hacer los productos más anchos en pantallas pequeñas */
+  }
+
+  .galeria-historia img {
+    width: 90%; /* Ajustar el tamaño de las imágenes */
+  }
 }
