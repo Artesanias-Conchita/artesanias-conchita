@@ -3,89 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <title>Contacto - Artesanías Conchita</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 40px;
-    }
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 40px;
+    background-color: #FAD2D2; /* Fondo principal: rosado pastel */
+    color: #000000; /* Texto en general: negro */
+  }
 
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #FCE0E0; /* Barra de navegación: rosado pastel claro */
+  }
 
-    nav {
-      margin-top: 10px;
-    }
+  nav {
+    margin-top: 10px;
+  }
 
-    nav a {
-      text-decoration: none;
-      color: #444;
-      background-color: #fadadd;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+  nav a {
+    text-decoration: none;
+    color: #000000; /* Texto de la barra de navegación */
+    background-color: #FFDAB3; /* Botones en tono melón claro */
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid #FFD397; /* Añadir un borde para mejor distinción */
+  }
 
-    nav a:hover {
-      background-color: #ffd8a9;
-    }
+  nav a:hover {
+    background-color: #FFC880; /* Fondo más oscuro del melón claro al pasar el mouse */
+    border-color: #FFB84D; /* Cambiar color del borde al pasar el mouse */
+  }
 
-    h1, h2 {
-      text-align: center;
-    }
+  h1, h2 {
+    text-align: center;
+  }
 
-    .justificado {
-      text-align: justify;
-    }
+  .justificado {
+    text-align: justify;
+  }
 
-    .info-contacto {
-      text-align: center;
-      margin-top: 30px;
-    }
+  .info-contacto {
+    text-align: center;
+    margin-top: 30px;
+  }
 
-    .mapa {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
+  .mapa {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 
-    .boton-facebook {
-      display: inline-block;
-      margin-top: 20px;
-      background-color: #4267B2;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  .boton-facebook {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #FFDAB3; /* Botón de Facebook: melón claro */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #FFD397; /* Añadir borde para mayor visibilidad */
+  }
 
-    .boton-facebook:hover {
-      background-color: #365899;
-    }
+  .boton-facebook:hover {
+    background-color: #FFC880; /* Fondo más oscuro del melón claro */
+    border-color: #FFB84D; /* Cambiar el color del borde al pasar el mouse */
+  }
 
-    footer {
-      text-align: center;
-      margin-top: 30px;
-    }
-  </style>
-</head>
-<body>
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    background-color: #F9E0E0; /* Fondo alterno / Footer: rosa empolvado tenue */
+    padding: 20px;
+  }
+</style>
 
-  <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: #f0f0f0;">
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
   <div style="display: flex; align-items: center;">
-    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 80px; margin-right: 10px;">
+    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 100px; margin-right: 10px;">
     <h1 style="margin: 0; font-size: 24px;">Artesanías Conchita</h1>
   </div>
   <nav style="display: flex;">
-    <a href="index.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Inicio</a>
-    <a href="historia.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Historia</a>
-    <a href="productos.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Productos</a>
-    <a href="contacto.html" class="active" style="text-decoration: none; color: #444; background-color: #e0b0b0; padding: 10px 15px; margin-left: 5px; border-radius: 5px; font-weight: bold;">Contacto</a>
-    <a href="preguntas.html" style="text-decoration: none; color: #444; background-color: #fadadd; padding: 10px 15px; border-radius: 5px; font-weight: bold;">Preguntas</a>
+    <a href="index.html">Inicio</a>
+    <a href="historia.html">Historia</a>
+    <a href="productos.html">Productos</a>
+    <a href="contacto.html" class="active">Contacto</a>
+    <a href="preguntas.html">Preguntas</a>
   </nav>
 </header>
 
@@ -105,16 +112,22 @@
       </iframe>
   
     </div>
-    
-    <div class="info-contacto">
-  <a href="https://www.facebook.com/profile.php?id=100063916399476&rdid=5FJQnkuTnwBvmpi5&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AKCzBgVPx%2F" 
-     target="_blank" 
-     class="boton-facebook">
+   <div style="text-align: center; margin-top: 20px;">
+  <div class="info-contacto" style="display: inline-flex; align-items: center; gap: 10px;">
+    <!-- Logo de Facebook separado -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
          alt="Logo Facebook" 
-         style="width: 20px; vertical-align: middle; margin-right: 8px;">
-    Visitar nuestro Facebook
-  </a>
+         style="width: 30px; height: 30px;">
+
+    <!-- Botón estilo Facebook -->
+    <a href="https://www.facebook.com/profile.php?id=100063916399476&rdid=5FJQnkuTnwBvmpi5&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AKCzBgVPx%2F" 
+       target="_blank" 
+       style="background-color: #1877F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+      Visitar nuestro Facebook
+    </a>
+  </div>
+
+  <!-- Nombre de usuario debajo -->
   <p style="margin-top: 10px;">@ArtesaníasConchita</p>
 </div>
 
