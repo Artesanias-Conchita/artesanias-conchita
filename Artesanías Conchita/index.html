@@ -18,10 +18,10 @@
       align-items: center;
       padding: 10px 20px;
       background-color: #f0f0f0;
-      margin-bottom: 20px; /* Añadido margen inferior para separar del contenido */
+      margin-bottom: 20px;
     }
 
-    header div { /* Estilos para el contenedor del logo y el nombre */
+    header div {
       display: flex;
       align-items: center;
     }
@@ -51,7 +51,7 @@
     }
 
     nav a.active {
-      background-color: #e0b0b0; /* Resalta la pestaña activa */
+      background-color: #e0b0b0;
       color: #fff;
     }
 
@@ -73,56 +73,78 @@
       text-align: center;
       margin-top: 30px;
     }
-    </style>
+
+    /* CARRUSEL REDUCIDO */
+    .carousel-container {
+      width: 500px;
+      height: 300px;
+      margin: 0 auto 30px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .carousel-slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <div>
-      <img src="img/logo.png" alt="Logo de Artesanías Conchita">
-      <h1>Artesanías Conchita</h1>
-    </div>
-    <nav>
-      <a href="index.html" class="active">Inicio</a>
-      <a href="historia.html">Historia</a>
-      <a href="productos.html">Productos</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="preguntas.html">Preguntas</a>
-    </nav>
-  
-  </header>
-
-  <div class="carousel-container">
-    <div class="carousel-slide">
-      <img src="img/Inicio/Inicio1.jpg" alt="Imagen 1">
-    </div>
-    <div class="carousel-slide">
-      <img src="img/Inicio/Inicio2.jpg" alt="Imagen 2">
-    </div>
-    <div class="carousel-slide">
-      <img src="img/Inicio/Inicio3.jpg" alt="Imagen 3">
-    </div>
-    <div class="carousel-slide">
-      <img src="img/Inicio/Inicio4.jpg" alt="Imagen 4">
-    </div>
+  <div>
+    <img src="img/logo.png" alt="Logo de Artesanías Conchita">
+    <h1>Artesanías Conchita</h1>
   </div>
+  <nav>
+    <a href="index.html" class="active">Inicio</a>
+    <a href="historia.html">Historia</a>
+    <a href="productos.html">Productos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="preguntas.html">Preguntas</a>
+  </nav>
+</header>
 
-  <script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll(".carousel-slide");
-    const numSlides = slides.length;
+<div class="carousel-container">
+  <div class="carousel-slide">
+    <img src="img/Inicio/Inicio1.jpg" alt="Imagen 1">
+  </div>
+  <div class="carousel-slide">
+    <img src="img/Inicio/Inicio2.jpg" alt="Imagen 2">
+  </div>
+  <div class="carousel-slide">
+    <img src="img/Inicio/Inicio3.jpg" alt="Imagen 3">
+  </div>
+  <div class="carousel-slide">
+    <img src="img/Inicio/Inicio4.jpg" alt="Imagen 4">
+  </div>
+</div>
 
-    function nextSlide() {
-      slides[slideIndex].style.display = "none";
-      slideIndex = (slideIndex + 1) % numSlides;
-      slides[slideIndex].style.display = "block";
-    }
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll(".carousel-slide");
+  const numSlides = slides.length;
 
-    // Cambia de imagen cada 3 segundos (3000 milisegundos)
-    setInterval(nextSlide, 3000);
-  </script>
-  
-  <div style="text-align: center; margin-top: 50px;">
+  slides[slideIndex].style.display = "block"; // Mostrar la primera imagen
+
+  function nextSlide() {
+    slides[slideIndex].style.display = "none";
+    slideIndex = (slideIndex + 1) % numSlides;
+    slides[slideIndex].style.display = "block";
+  }
+
+  setInterval(nextSlide, 3000);
+</script>
+
+<div style="text-align: center; margin-top: 50px;">
   <h2 style="font-size: 2.5em; color: #000 !important; margin-bottom: 10px; font-weight: bold;">
     Bienvenido a Artesanías Conchita
   </h2>
