@@ -7,11 +7,34 @@
   <link rel="stylesheet" href="estilos.css">
   <style>
     body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 40px;
-  background-color: #fadadd; /* Fondo rosa claro */
-}
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      background-color: #fadadd; /* Fondo rosa claro */
+      color: #000;
+    }
+
+    body.modo-oscuro {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+
+    body.modo-oscuro a {
+      color: #fbcba4;
+    }
+
+    body.modo-oscuro nav a {
+      background-color: #444;
+      color: white;
+    }
+
+    body.modo-oscuro nav a:hover {
+      background-color: #666;
+    }
+
+    body.modo-oscuro nav a.active {
+      background-color: #888;
+    }
 
     header {
       display: flex;
@@ -20,6 +43,10 @@
       padding: 10px 20px;
       background-color: #f0f0f0;
       margin-bottom: 20px;
+    }
+
+    body.modo-oscuro header {
+      background-color: #1e1e1e;
     }
 
     header div {
@@ -75,7 +102,6 @@
       margin-top: 30px;
     }
 
-    /* CARRUSEL REDUCIDO */
     .carousel-container {
       width: 500px;
       height: 300px;
@@ -95,6 +121,57 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    #controles-fijos {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+
+    body.modo-oscuro #controles-fijos {
+      background-color: rgba(30, 30, 30, 0.85);
+      color: white;
+    }
+
+    #modo-oscuro-toggle,
+    #idioma {
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: transparent;
+      color: inherit;
+    }
+
+    #modo-oscuro-toggle:hover,
+    #idioma:hover {
+      background-color: #eee;
+    }
+
+    body.modo-oscuro #modo-oscuro-toggle:hover,
+    body.modo-oscuro #idioma:hover {
+      background-color: #444;
+    }
+
+    @media (max-width: 600px) {
+      #controles-fijos {
+        top: 0.5rem;
+        right: 0.5rem;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0.5rem;
+        gap: 0.3rem;
+      }
     }
   </style>
 </head>
@@ -134,7 +211,7 @@
   const slides = document.querySelectorAll(".carousel-slide");
   const numSlides = slides.length;
 
-  slides[slideIndex].style.display = "block"; // Mostrar la primera imagen
+  slides[slideIndex].style.display = "block";
 
   function nextSlide() {
     slides[slideIndex].style.display = "none";
@@ -146,26 +223,36 @@
 </script>
 
 <div style="text-align: center; margin-top: 50px;">
-  <h2 style="font-size: 2.5em; color: #000 !important; margin-bottom: 10px; font-weight: bold;">
+  <h2 id="bienvenida" style="font-size: 2.5em; margin-bottom: 10px; font-weight: bold;">
     Bienvenido a Artesanías Conchita
   </h2>
-  <p style="font-size: 1.2em; color: #000 !important;">
+  <p id="subtitulo" style="font-size: 1.2em;">
     Descubre nuestras hermosas creaciones.
   </p>
 </div>
 
-  <main>
-    <section class="intro">
-      <h2 style="text-align: center;">Negocio de venta de artesanías</h2>
-     <p>
+<main>
+  <section class="intro">
+    <h2 id="objetivo" style="text-align: center;">Negocio de venta de artesanías</h2>
+    <p>
         Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.
       </p>
-    </section>
-  </main>
+  </section>
+</main>
 
-  <footer>
-    <p>© 2025 Artesanías Conchita</p>
-  </footer>
+<footer>
+  <p>© 2025 Artesanías Conchita</p>
+</footer>
 
+<div id="controles-fijos">
+  <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
+  <label for="idioma">🌐 Idioma:</label>
+  <select id="idioma">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+</div>
+
+<script src="funciones.js"></script>
 </body>
 </html>

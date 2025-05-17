@@ -3,98 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <title>Contacto y Ubicación - Artesanías Conchita</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 40px;
-    background-color: #fadadd; /* Fondo de la página */
-  }
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      background-color: #fadadd;
+      color: #000;
+    }
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f0f0f0; /* Barra completa */
-    margin-bottom: 20px;
-  }
+    body.modo-oscuro {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
 
-  header div {
-    display: flex;
-    align-items: center;
-  }
+    body.modo-oscuro a {
+      color: #fbcba4;
+    }
 
-  header img {
-    width: 80px;
-    margin-right: 10px;
-  }
+    body.modo-oscuro nav a {
+      background-color: #444;
+      color: white;
+    }
 
-  header h1 {
-    margin: 0;
-    font-size: 24px;
-  }
+    body.modo-oscuro nav a:hover {
+      background-color: #666;
+    }
 
-  nav {
-    display: flex;
-  }
+    body.modo-oscuro nav a.active {
+      background-color: #888;
+    }
 
-  nav a {
-    text-decoration: none;
-    color: #444;
-    background-color: #fadadd; /* Fondo de los botones */
-    padding: 10px 15px;
-    margin-left: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-  }
+    body.modo-oscuro header {
+      background-color: #1e1e1e;
+    }
 
-  nav a.active {
-    background-color: #e0b0b0; /* Botón activo */
-    color: #fff;
-  }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      margin-bottom: 20px;
+    }
 
-  nav a:hover {
-    background-color: #ffd8a9; /* Hover */
-  }
+    header div {
+      display: flex;
+      align-items: center;
+    }
 
-  h2 {
-    text-align: center;
-  }
+    header img {
+      width: 80px;
+      margin-right: 10px;
+    }
 
-  .intro {
-    margin: 0 auto;
-    max-width: 800px;
-    text-align: justify;
-  }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
 
-  footer {
-    text-align: center;
-    margin-top: 30px;
-  }
+    nav {
+      display: flex;
+    }
 
-  /* CARRUSEL REDUCIDO */
-  .carousel-container {
-    width: 500px;
-    height: 300px;
-    margin: 0 auto 30px auto;
-    overflow: hidden;
-    border-radius: 10px;
-    position: relative;
-  }
+    nav a {
+      text-decoration: none;
+      color: #444;
+      background-color: #fadadd;
+      padding: 10px 15px;
+      margin-left: 5px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
 
-  .carousel-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-  }
+    nav a.active {
+      background-color: #e0b0b0;
+      color: #fff;
+    }
 
-  .carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-</style>
+    nav a:hover {
+      background-color: #ffd8a9;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .intro {
+      margin: 0 auto;
+      max-width: 800px;
+      text-align: justify;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .carousel-container {
+      width: 500px;
+      height: 300px;
+      margin: 0 auto 30px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .carousel-slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #controles-fijos {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+
+    body.modo-oscuro #controles-fijos {
+      background-color: rgba(30, 30, 30, 0.85);
+      color: white;
+    }
+
+    #modo-oscuro-toggle,
+    #idioma {
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: transparent;
+      color: inherit;
+    }
+
+    #modo-oscuro-toggle:hover,
+    #idioma:hover {
+      background-color: #eee;
+    }
+
+    body.modo-oscuro #modo-oscuro-toggle:hover,
+    body.modo-oscuro #idioma:hover {
+      background-color: #444;
+    }
+
+    @media (max-width: 600px) {
+      #controles-fijos {
+        top: 0.5rem;
+        right: 0.5rem;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0.5rem;
+        gap: 0.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
 
 <header>
   <div>
@@ -110,12 +190,14 @@
   </nav>
 </header>
 
-<h2 style="text-align: center; margin-top: 20px;">Contacto y Ubicación</h2>
-  
-  <main>
-    <p style="text-align: center; font-weight: bold;">Dirección: 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután.</p>
-    <div class="mapa">
-      <iframe 
+<h2 id="titulo-contacto" style="text-align: center; margin-top: 20px;">Contacto y Ubicación</h2>
+
+<main>
+  <p id="direccion" style="text-align: center; font-weight: bold;">
+    Dirección: 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután.
+  </p>
+  <div class="mapa">
+    <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d970.5181960811797!2d-88.43809137156285!3d13.345748499184447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f7b39273a4beae3%3A0x13cd6103725293f3!2sArtesan%C3%ADas%20Conchita!5e0!3m2!1ses!2ssv!4v1745879747593!5m2!1ses!2ssv" 
       width="100%" 
       height="400" 
@@ -123,42 +205,38 @@
       allowfullscreen="" 
       loading="lazy" 
       referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-  
-    </div>
-   <div style="text-align: center; margin-top: 20px;">
-  <div class="info-contacto" style="display: inline-flex; align-items: center; gap: 10px;">
-    <!-- Logo de Facebook separado -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
-         alt="Logo Facebook" 
-         style="width: 30px; height: 30px;">
-
-    <!-- Botón estilo Facebook -->
-    <a href="https://www.facebook.com/profile.php?id=100063916399476&rdid=5FJQnkuTnwBvmpi5&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AKCzBgVPx%2F" 
-       target="_blank" 
-       style="background-color: #1877F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-weight: bold;">
-      Visitar nuestro Facebook
-    </a>
+    </iframe>
   </div>
 
-  <!-- Nombre de usuario debajo -->
-  <p style="margin-top: 10px;">@ArtesaníasConchita</p>
+  <div style="text-align: center; margin-top: 20px;">
+    <div class="info-contacto" style="display: inline-flex; align-items: center; gap: 10px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+           alt="Logo Facebook" 
+           style="width: 30px; height: 30px;">
+
+      <a href="https://www.facebook.com/profile.php?id=100063916399476&rdid=5FJQnkuTnwBvmpi5&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AKCzBgVPx%2F" 
+         target="_blank" 
+         style="background-color: #1877F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+        Visitar nuestro Facebook
+      </a>
+    </div>
+    <p style="margin-top: 10px;">@ArtesaníasConchita</p>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Artesanías Conchita</p>
+</footer>
+
+<div id="controles-fijos">
+  <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
+  <label for="idioma">🌐 Idioma:</label>
+  <select id="idioma">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
 </div>
 
-
-      <!-- Lugar para agregar en el futuro WhatsApp o Teléfono -->
-      <!--
-      <h2>Contacto Directo</h2>
-      <p>Teléfono: +503 XXXX-XXXX</p>
-      <p>WhatsApp: +503 XXXX-XXXX</p>
-      -->
-    </div>
-
-  </main>
-
-  <footer>
-    <p>© 2025 Artesanías Conchita</p>
-  </footer>
-
+<script src="funciones.js"></script>
 </body>
 </html>
