@@ -2,93 +2,106 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Contacto - Artesanías Conchita</title>
+  <title>Contacto y Ubicación - Artesanías Conchita</title>
 <style>
   body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 40px;
-    background-color: #FAD2D2; /* Fondo principal: rosado pastel */
-    color: #000000; /* Texto en general: negro */
+    background-color: #fadadd; /* Fondo de la página */
   }
 
   header {
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: #F4B183; /* Barra completa: durazno claro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
+    background-color: #f0f0f0; /* Barra completa */
+    margin-bottom: 20px;
+  }
+
+  header div {
+    display: flex;
+    align-items: center;
+  }
+
+  header img {
+    width: 80px;
+    margin-right: 10px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 24px;
   }
 
   nav {
-    margin-top: 10px;
+    display: flex;
   }
 
   nav a {
     text-decoration: none;
-    color: #000000; /* Texto de los botones */
-    background-color: #F7C5A0; /* Botones: tono más claro del durazno */
+    color: #444;
+    background-color: #fadadd; /* Fondo de los botones */
     padding: 10px 15px;
-    margin: 5px;
+    margin-left: 5px;
     border-radius: 5px;
     font-weight: bold;
-    border: 2px solid #F7C5A0; /* Borde similar al botón */
+  }
+
+  nav a.active {
+    background-color: #e0b0b0; /* Botón activo */
+    color: #fff;
   }
 
   nav a:hover {
-    background-color: #FFC880; /* Botón al pasar el mouse */
-    border-color: #FFB84D;
+    background-color: #ffd8a9; /* Hover */
   }
 
-  h1, h2 {
+  h2 {
     text-align: center;
   }
 
-  .justificado {
+  .intro {
+    margin: 0 auto;
+    max-width: 800px;
     text-align: justify;
-  }
-
-  .info-contacto {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  .mapa {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .boton-facebook {
-    display: inline-block;
-    margin-top: 20px;
-    background-color: #F7C5A0; /* Botón Facebook */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #F7C5A0;
-  }
-
-  .boton-facebook:hover {
-    background-color: #FFC880;
-    border-color: #FFB84D;
   }
 
   footer {
     text-align: center;
     margin-top: 30px;
-    background-color: #FAD2D2;
-    padding: 20px;
+  }
+
+  /* CARRUSEL REDUCIDO */
+  .carousel-container {
+    width: 500px;
+    height: 300px;
+    margin: 0 auto 30px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 </style>
 
-<header style="display: flex; justify-content: space-between; align-items: center; background-color: #F4B183; padding: 10px 20px;">
-  <div style="display: flex; align-items: center;">
-    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 120px; margin-right: 10px;">
-    <h1 style="margin: 0; font-size: 24px; color: #000000;">Artesanías Conchita</h1>
+<header>
+  <div>
+    <img src="img/logo.png" alt="Logo de Artesanías Conchita">
+    <h1>Artesanías Conchita</h1>
   </div>
-  <nav style="display: flex;">
+  <nav>
     <a href="index.html">Inicio</a>
     <a href="historia.html">Historia</a>
     <a href="productos.html">Productos</a>
@@ -97,10 +110,10 @@
   </nav>
 </header>
 
-<h2 style="text-align: center; margin-top: 20px;">Contacto</h2>
+<h2 style="text-align: center; margin-top: 20px;">Contacto y Ubicación</h2>
   
   <main>
-
+    <p style="text-align: center; font-weight: bold;">Dirección: 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután.</p>
     <div class="mapa">
       <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d970.5181960811797!2d-88.43809137156285!3d13.345748499184447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f7b39273a4beae3%3A0x13cd6103725293f3!2sArtesan%C3%ADas%20Conchita!5e0!3m2!1ses!2ssv!4v1745879747593!5m2!1ses!2ssv" 
