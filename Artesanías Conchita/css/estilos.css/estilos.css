@@ -1,9 +1,12 @@
-:root { 
-  --color-principal: #B8E2C8;     /* Verde menta suave */
-  --color-secundario: #CDE8F6;    /* Azul cielo pastel */
+:root {  
+  --color-principal: #fadadd;     /* Rosa claro (fondo barra de navegación) */
+  --color-secundario: #CDE8F6;    /* Azul cielo pastel (puede mantenerlo en el footer si quieres) */
   --color-acento: #FBCBA4;        /* Naranja melón */
-  --color-fondo: #B8E2C8;         /* Mismo que el fondo principal */
+  --color-fondo: #fadadd;         /* Fondo de la página en rosa claro */
   --color-texto: #000000;         /* Texto siempre negro */
+
+  --color-boton-activo: #e0b0b0;  /* Rosa más oscuro para el botón activo */
+  --color-boton-hover: #ffd8a9;   /* Durazno claro para hover */
 }
 
 body {
@@ -14,7 +17,7 @@ body {
 }
 
 header {
-  background-color: var(--color-principal);
+  background-color: #f0f0f0;  /* Gris claro para toda la barra del header */
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -48,11 +51,20 @@ header {
   text-decoration: none;
   color: var(--color-texto);
   font-weight: bold;
+  background-color: var(--color-principal); /* fondo rosa claro para los botones */
+  padding: 0.5em 1em;
+  border-radius: 5px;
 }
 
 .menu a:hover {
-  color: var(--color-acento);  /* Cambiar color de texto al pasar el mouse */
-  text-decoration: underline;  /* Agregar subrayado */
+  background-color: var(--color-boton-hover); /* color hover durazno claro */
+  color: var(--color-texto);
+  text-decoration: underline;
+}
+
+.menu a.active {
+  background-color: var(--color-boton-activo); /* botón activo en rosa más oscuro */
+  color: var(--color-texto);
 }
 
 main {
