@@ -10,7 +10,7 @@
       font-family: Arial, sans-serif;
       line-height: 1.6;
       margin: 40px;
-      background-color: #fadadd; /* Fondo rosa claro */
+      background-color: #fadadd;
       color: #000;
     }
 
@@ -180,14 +180,14 @@
 <header>
   <div>
     <img src="img/logo.png" alt="Logo de Artesanías Conchita">
-    <h1>Artesanías Conchita</h1>
+    <h1 id="titulo-header">Artesanías Conchita</h1>
   </div>
   <nav>
-    <a href="index.html" class="active">Inicio</a>
-    <a href="historia.html">Historia</a>
-    <a href="productos.html">Productos</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="preguntas.html">Preguntas</a>
+    <a href="index.html" class="active" id="nav-inicio">Inicio</a>
+    <a href="historia.html" id="nav-historia">Historia</a>
+    <a href="productos.html" id="nav-productos">Productos</a>
+    <a href="contacto.html" id="nav-contacto">Contacto</a>
+    <a href="preguntas.html" id="nav-preguntas">Preguntas</a>
   </nav>
 </header>
 
@@ -234,19 +234,19 @@
 <main>
   <section class="intro">
     <h2 id="objetivo" style="text-align: center;">Negocio de venta de artesanías</h2>
-    <p>
-        Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.
-      </p>
+   <p id="texto-objetivo">
+  Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.
+</p>
   </section>
 </main>
 
 <footer>
-  <p>© 2025 Artesanías Conchita</p>
+  <p id="footer-copy">© 2025 Artesanías Conchita</p>
 </footer>
 
 <div id="controles-fijos">
   <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
-  <label for="idioma">🌐 Idioma:</label>
+  <label for="idioma" id="label-idioma">🌐 Idioma:</label>
   <select id="idioma">
     <option value="es">Español</option>
     <option value="en">English</option>
