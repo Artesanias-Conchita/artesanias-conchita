@@ -1,13 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("modo-oscuro-toggle");
     const body = document.body;
-    const modoGuardado = localStorage.getItem("modo");
+
+     const modoGuardado = localStorage.getItem("modo");
 
     if (modoGuardado === "oscuro") {
         body.classList.add("modo-oscuro");
         if (toggle) toggle.textContent = "☀️ Cambiar modo";
     } else {
+        // Si no hay modo guardado o está en "claro", asegurar que esté en modo claro
+        body.classList.remove("modo-oscuro");
         if (toggle) toggle.textContent = "🌙 Cambiar modo";
+        localStorage.setItem("modo", "claro"); // Establecer "claro" como valor inicial si no existe
     }
 
     toggle?.addEventListener("click", () => {
@@ -34,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
             tituloValores: "Valores de la empresa",
             galeriaHistoria: "Galería de nuestra historia",
             productos: "Productos",
-            // historiaTexto: "En la década de los 90, Celenia inició su camino en el mundo del comercio...", // ELIMINADO: Redundante
             navInicio: "Inicio",
             navHistoria: "Historia",
             navProductos: "Productos",
@@ -71,7 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
             valor5Desc: "Nos esforzamos por cumplir con nuestros compromisos y ofrecer productos que representen con orgullo la cultura salvadoreña, garantizando un servicio de calidad.",
             parrafoHistoria: `En la década de los 90, Celenia inició su camino en el mundo del comercio con la venta de zapatos. Sin embargo, ante el aumento de la competencia, su negocio no prosperó. Fue entonces cuando su madre le sugirió incursionar en la venta de artesanías, un mercado poco explorado en Usulután.<br><br>Comenzó con la venta de llaveros en un pequeño local del mercado Número 1 de Usulután. Conseguir los productos no fue fácil, ya que los artesanos y proveedores se encontraban en San Salvador y La Palma. Celenia viajaba constantemente en autobús para abastecerse, enfrentando dificultades en el transporte de la mercancía. Con el tiempo, logró adquirir su propio vehículo, lo que facilitaría la expansión de su negocio.<br><br>Gracias a la calidad de sus productos y su esfuerzo, la tienda fue creciendo. Con el tiempo, empezó a importar artesanías de Guatemala y Nicaragua, lo que le permitió ofrecer una mayor variedad y mejores precios. Su éxito la llevó a abrir una segunda tienda, consolidando su presencia en el mercado.<br><br>Originalmente, su negocio se llamó Artesanías Helen en honor a su hija. Sin embargo, recientemente cambió el nombre a Artesanías Conchita, en tributo a su madre, quien fue clave en la fundación del negocio.<br><br>Hoy en día, Artesanías Conchita es un referente en la venta de artesanías salvadoreñas, atrayendo tanto a clientes locales como extranjeros. Con cada pieza vendida, se comparte un pedazo de la cultura y tradición de El Salvador.`,
             tituloMisionVision: "Misión y Visión de la empresa.",
-            labelIdioma: "🌐 Idioma:"
+            labelIdioma: "🌐 Idioma:",
+            // Nuevas traducciones para productos.html
+            "productos-titulo-pagina": "Productos - Artesanías Conchita",
+            "nombre-empresa-productos": "Artesanías Conchita",
+            "nav-inicio-productos": "Inicio",
+            "nav-historia-productos": "Historia",
+            "nav-productos-pagina": "Productos",
+            "nav-contacto-productos": "Contacto",
+            "nav-preguntas-productos": "Preguntas",
+            "productos-seccion-titulo": "Productos",
+            "footer-productos": "© 2025 Artesanías Conchita",
+            "label-idioma-productos": "🌐 Idioma:"
         },
         en: {
             bienvenida: "Welcome to Artesanías Conchita",
@@ -87,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
             tituloValores: "Company Values",
             galeriaHistoria: "Our History Gallery",
             productos: "Products",
-            // historiaTexto: "In the 1990s, Celenia began her journey in the world of commerce by selling shoes...", // ELIMINADO: Redundante
             navInicio: "Home",
             navHistoria: "History",
             navProductos: "Products",
@@ -122,9 +135,20 @@ document.addEventListener("DOMContentLoaded", () => {
             valor4Desc: "We act with transparency and ethics in all our operations, maintaining the trust of our customers and suppliers.",
             valor5: "Responsibility",
             valor5Desc: "We strive to fulfill our commitments and offer products that proudly represent Salvadoran culture, guaranteeing quality service.",
-            parrafoHistoria: `In the 90s, Celenia began her journey in the world of commerce selling shoes. However, due to increased competition, her business did not prosper. It was then that her mother suggested venturing into the sale of handicrafts, a little-explored market in Usulután.<br><br>She started by selling keychains in a small shop at Market Number 1 in Usulután. Sourcing products was not easy, as artisans and suppliers were located in San Salvador and La Palma. Celenia constantly traveled by bus to stock up, facing difficulties in transporting goods. Over time, she managed to acquire her own vehicle, which facilitated the expansion of her business.<br><br>Thanks to the quality of her products and her effort, the store grew. Over time, she began to import handicrafts from Guatemala and Nicaragua, which allowed her to offer a greater variety and better prices. Her success led her to open a second store, consolidating her presence in the market.<br><br>Originally, her business was named Artesanías Helen in honor of her daughter. However, she recently changed the name to Artesanías Conchita, in tribute to her mother, who was key to the foundation of the business.<br><br>Today, Artesanías Conchita is a benchmark in the sale of Salvadoran handicrafts, attracting both local and foreign customers. With each piece sold, a piece of the culture and tradition of El Salvador.`,
+            parrafoHistoria: `In the 90s, Celenia began her journey in the world of commerce selling shoes. However, due to increased competition, her business did not prosper. It was then that her mother suggested venturing into the sale of handicrafts, a little-explored market in Usulután.<br><br>She started by selling keychains in a small shop at Market Number 1 in Usulután. Sourcing products was not easy, as artisans and suppliers were located in San Salvador and La Palma. Celenia traveled constantly by bus to stock up, facing difficulties in transporting goods. Over time, she managed to acquire her own vehicle, which facilitated the expansion of her business.<br><br>Thanks to the quality of her products and her effort, the store grew. Over time, she began to import handicrafts from Guatemala and Nicaragua, which allowed her to offer a greater variety and better prices. Her success led her to open a second store, consolidating her presence in the market.<br><br>Originalmente, su negocio se llamó Artesanías Helen en honor a su hija. Sin embargo, recientemente cambió el nombre a Artesanías Conchita, en tributo a su madre, quien fue clave en la fundación del negocio.<br><br>Today, Artesanías Conchita is a benchmark in the sale of Salvadoran handicrafts, attracting both local and foreign customers. With each piece sold, a piece of the culture and tradition of El Salvador.`,
             tituloMisionVision: "Mission and Vision of the company",
-            labelIdioma: "🌐 Language:"
+            labelIdioma: "🌐 Language:",
+            // Nuevas traducciones para products.html
+            "productos-titulo-pagina": "Products - Artesanías Conchita",
+            "nombre-empresa-productos": "Artesanías Conchita",
+            "nav-inicio-productos": "Home",
+            "nav-historia-productos": "History",
+            "nav-productos-pagina": "Products",
+            "nav-contacto-productos": "Contact",
+            "nav-preguntas-productos": "FAQ",
+            "productos-seccion-titulo": "Products",
+            "footer-productos": "© 2025 Artesanías Conchita",
+            "label-idioma-productos": "🌐 Language:"
         }
     };
 
@@ -182,7 +206,18 @@ document.addEventListener("DOMContentLoaded", () => {
             ["valor4-desc", t.valor4Desc],
             ["valor5", t.valor5],
             ["valor5-desc", t.valor5Desc],
-            ["label-idioma", t.labelIdioma]
+            ["label-idioma", t.labelIdioma],
+            // Nuevos IDs para productos.html
+            ["productos-titulo-pagina", t["productos-titulo-pagina"]],
+            ["nombre-empresa-productos", t["nombre-empresa-productos"]],
+            ["nav-inicio-productos", t["nav-inicio-productos"]],
+            ["nav-historia-productos", t["nav-historia-productos"]],
+            ["nav-productos-pagina", t["nav-productos-pagina"]],
+            ["nav-contacto-productos", t["nav-contacto-productos"]],
+            ["nav-preguntas-productos", t["nav-preguntas-productos"]],
+            ["productos-seccion-titulo", t["productos-seccion-titulo"]],
+            ["footer-productos", t["footer-productos"]],
+            ["label-idioma-productos", t["label-idioma-productos"]]
         ];
 
         ids.forEach(([id, texto]) => {
@@ -190,21 +225,32 @@ document.addEventListener("DOMContentLoaded", () => {
             if (elemento) {
                 if (elemento.tagName.toLowerCase() === "input" || elemento.tagName.toLowerCase() === "textarea") {
                     elemento.placeholder = texto;
-                } else if (id === "parrafo-historia" || id === "parrafo-mision" || id === "parrafo-vision" || id === "texto-objetivo") {
-                    // Para los elementos que necesitan HTML (como <br>)
+                } else if (elemento.tagName.toLowerCase() === "option") {
+                    elemento.textContent = texto;
+                }
+                 else if (id === "parrafo-historia" || id === "parrafo-mision" || id === "parrafo-vision" || id === "texto-objetivo") {
                     elemento.innerHTML = texto;
-                } else {
-                    // Para el resto de los elementos (texto plano)
+                } else if (id === "productos-titulo-pagina") {
+                    document.title = texto;
+                }
+                else {
                     elemento.textContent = texto;
                 }
             }
         });
     }
 
-    // Seleccionar idioma guardado o default
-    const idiomaGuardado = localStorage.getItem("idioma") || "es";
-    aplicarTraduccion(idiomaGuardado);
-    if (idiomaSelect) idiomaSelect.value = idiomaGuardado;
+   const idiomaGuardado = localStorage.getItem("idioma");
+
+    if (idiomaGuardado) {
+        aplicarTraduccion(idiomaGuardado);
+        if (idiomaSelect) idiomaSelect.value = idiomaGuardado;
+    } else {
+        // Si no hay idioma guardado, establecer español como predeterminado
+        aplicarTraduccion("es");
+        if (idiomaSelect) idiomaSelect.value = "es";
+        localStorage.setItem("idioma", "es"); // Guardar "es" en el almacenamiento local
+    }
 
     idiomaSelect?.addEventListener("change", (e) => {
         const nuevoIdioma = e.target.value;
