@@ -7,10 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (modoGuardado === "oscuro") {
         body.classList.add("modo-oscuro");
-        if (toggle) toggle.textContent = "☀️ Cambiar modo";
+        // Asegúrate de que el span dentro del botón sea el que cambie el texto
+        const toggleTextSpan = toggle?.querySelector('#modo-oscuro-toggle-text');
+        if (toggleTextSpan) toggleTextSpan.textContent = "☀️ Cambiar modo";
     } else {
         body.classList.remove("modo-oscuro");
-        if (toggle) toggle.textContent = "🌙 Cambiar modo";
+        const toggleTextSpan = toggle?.querySelector('#modo-oscuro-toggle-text');
+        if (toggleTextSpan) toggleTextSpan.textContent = "🌙 Cambiar modo";
         localStorage.setItem("modo", "claro");
     }
 
@@ -18,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle?.addEventListener("click", () => {
         body.classList.toggle("modo-oscuro");
         const modoActual = body.classList.contains("modo-oscuro") ? "oscuro" : "claro";
-        if (toggle) toggle.textContent = modoActual === "oscuro" ? "☀️ Cambiar modo" : "🌙 Cambiar modo";
+        const toggleTextSpan = toggle?.querySelector('#modo-oscuro-toggle-text');
+        if (toggleTextSpan) toggleTextSpan.textContent = modoActual === "oscuro" ? "☀️ Cambiar modo" : "🌙 Cambiar modo";
         localStorage.setItem("modo", modoActual);
     });
 
@@ -32,43 +36,36 @@ document.addEventListener("DOMContentLoaded", () => {
             objetivo: "Negocio de venta de artesanías",
             // Contacto y Ubicación
             "titulo-contacto": "Contacto y Ubicación",
-            // La dirección ahora incluye la etiqueta strong directamente en el texto
             "direccion": "<strong>Dirección:</strong> 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután.",
-            "visitar-facebook": "Visitar nuestro Facebook", // Texto para el botón
+            "visitar-facebook": "Visitar nuestro Facebook",
             "nombre-facebook": "@ArtesaníasConchita",
-            // Fin Contacto y Ubicación
-            preguntasTitulo: "Preguntas Frecuentes",
+            // Preguntas Frecuentes
+            "preguntas-titulo": "Preguntas Frecuentes",
+            "faq-q1": "¿Cuál es su ubicación?",
+            "faq-a1": "Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután.",
+            "faq-q2": "¿Cuál es el procedimiento para adquirir sus productos?",
+            "faq-a2": "Para realizar una compra, le invitamos a visitar nuestra tienda física directamente en Usulután.",
+            "faq-q3": "¿Ofrecen servicio de entrega a domicilio?",
+            "faq-a3": "No, actualmente todas las compras deben realizarse de manera presencial en nuestro establecimiento.",
+            "faq-q4": "¿Es posible realizar pedidos personalizados?",
+            "faq-a4": "Por el momento, eso depende del tipo de producto que desea personalizar.",
+            "faq-q5": "¿Disponen de una plataforma de venta en línea?",
+            "faq-a5": "No contamos con tienda en línea. Todas las ventas se efectúan exclusivamente en nuestro local física.",
+            "faq-q6": "¿Cuál es el origen de sus productos artesanales?",
+            "faq-a6": "La mayoría de nuestros productos son de origen salvadoreño. No obstante, también ofrecemos una selección de artesanías provenientes de otros países de Centroamérica.",
+            "faq-q7": "¿Cuál variedad de artesanías ofrecen?",
+            "faq-a7": "Nuestra oferta incluye llaveros, gorras, trajes típicos, artículos de cerámica, textiles y una diversidad de otros productos artesanales.",
+            "faq-q8": "¿Cuál es el horario de atención de su tienda?",
+            "faq-a8": "Estamos a su disposición durante el horario comercial establecido por el Mercado Municipal NO.1 de Usulután. Estos son de 8:00 am hasta las 4:00 pm.",
+            "faq-q9": "¿Cuál es el medio de contacto directo con su negocio?",
+            "faq-a9": "Puede contactarnos directamente, puede enviarnos un mensaje a tráves de nuestro número de WhatsApp.",
+            // Fin Preguntas Frecuentes
             tituloMision: "Misión",
             parrafoMision: `En Artesanías Conchita, nuestra misión es transformar la tradición en creatividad, ofreciendo piezas de artesanía que capturan la esencia y la autenticidad de nuestra cultura. Nos comprometemos a apoyar a los artesanos locales, promoviendo técnicas tradicionales y materiales sostenibles para crear productos únicos que enriquezcan la vida de nuestros clientes. Valoramos la calidad, la originalidad y el compromiso con el medio ambiente en cada creación, buscando siempre hacer de cada pieza un reflejo de la dedicación y la pasión que ponemos en nuestro trabajo.`,
             tituloVision: "Visión",
             parrafoVision: `En Artesanías Conchita, aspiramos a ser el referente principal en el mundo de la artesanía, reconocido por nuestra excelencia en la calidad y la autenticidad de nuestros productos. Imaginamos un futuro en el que nuestras piezas no solo embellezcan hogares y espacios, sino que también inspiren un aprecio más profundo por las tradiciones culturales y el arte hecho a mano. Queremos fomentar un impacto positivo en la comunidad y el medio ambiente, siendo un puente entre el legado artesanal y las nuevas generaciones de apreciadores del arte.`,
             tituloValores: "Valores de la empresa",
             galeriaHistoria: "Galería de nuestra historia",
-            productos: "Productos",
-            // Navegación (Coinciden con los IDs del HTML)
-            "nav-inicio": "Inicio",
-            "nav-historia": "Historia",
-            "nav-productos": "Productos",
-            "nav-contacto": "Contacto",
-            "nav-preguntas": "Preguntas",
-            // Fin Navegación
-            filtroTodas: "Todas las categorías",
-            filtroVestidos: "Vestidos",
-            filtroLlaveros: "Llaveros",
-            filtroGorras: "Gorras",
-            placeholderBuscar: "Buscar productos...",
-            producto1: "Vestido típico salvadoreño",
-            producto1desc: "Vestido tradicional con los colores de la bandera de El Salvador, adornado con encajes y escudos nacionales.",
-            producto2: "Llavero artesanal de colibrí",
-            producto2desc: "Hecho a mano con mostacillas de colores, inspirado en la fauna salvadoreña.",
-            producto3: "Gorra estilo artesanal con diseño taurino",
-            producto3desc: "Gorra con bordados culturales salvadoreños y diseño de toro.",
-            producto4: "Vestido típico infantil azul",
-            producto4desc: "Vestido tradicional para niña, con bordados artesanales y encaje floral.",
-            producto5: "Llavero artesanal de delfín con cuentas",
-            producto5desc: "Llavero hecho a mano con cuentas azules representando un delfín del mar salvadoreño.",
-            producto6: "Vestido típico salvadoreño azul",
-            producto6desc: "Vestido tradicional de El Salvador, confeccionado en tela satinada azul con encajes blancos, ideal para presentaciones culturales o celebraciones patrias.",
             textoObjetivo: `Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.`,
             tituloHistoria: "Historia de Artesanías Conchita",
             valor1: "Honestidad",
@@ -84,10 +81,39 @@ document.addEventListener("DOMContentLoaded", () => {
             parrafoHistoria: `En la década de los 90, Celenia inició su camino en el mundo del comercio con la venta de zapatos. Sin embargo, ante el aumento de la competencia, su negocio no prosperó. Fue entonces cuando su madre le sugirió incursionar en la venta de artesanías, un mercado poco explorado en Usulután.<br><br>Comenzó con la venta de llaveros en un pequeño local del mercado Número 1 de Usulután. Conseguir los productos no fue fácil, ya que los artesanos y proveedores se encontraban en San Salvador y La Palma. Celenia viajaba constantemente en autobús para abastecerse, enfrentando dificultades en el transporte de la mercancía. Con el tiempo, logró adquirir su propio vehículo, lo que facilitaría la expansión de su negocio.<br><br>Gracias a la calidad de sus productos y su esfuerzo, la tienda fue creciendo. Con el tiempo, empezó a importar artesanías de Guatemala y Nicaragua, lo que le permitió ofrecer una mayor variedad y mejores precios. Su éxito la llevó a abrir una segunda tienda, consolidando su presencia en el mercado.<br><br>Originalmente, su negocio se llamó Artesanías Helen en honor a su hija. Sin embargo, recientemente cambió el nombre a Artesanías Conchita, en tributo a su madre, quien fue clave en la fundación del negocio.<br><br>Hoy en día, Artesanías Conchita es un referente en la venta de artesanías salvadoreñas, atrayendo tanto a clientes locales como extranjeros. Con cada pieza vendida, se comparte un pedazo de la cultura y tradición de El Salvador.`,
             tituloMisionVision: "Misión y Visión de la empresa.",
             labelIdioma: "🌐 Idioma:",
-            // Footer
+            // Footer (genérico, usar para todas las páginas)
             "footer-texto": "© 2025 Artesanías Conchita",
-            // Header
-            "nombre-empresa": "Artesanías Conchita"
+            // Header (genérico, usar para todas las páginas)
+            "nombre-empresa-header": "Artesanías Conchita",
+            "modo-oscuro-toggle-text": "🌙 Cambiar modo",
+
+            // --- Textos específicos de la página de Productos (si solo aparecen ahí) ---
+            "productos-titulo-pagina": "Productos - Artesanías Conchita", // Título de la pestaña de productos
+            "productos-seccion-titulo": "Productos",
+            "filtro-todas": "Todas las categorías",
+            "filtro-vestidos": "Vestidos",
+            "filtro-llaveros": "Llaveros",
+            "filtro-gorras": "Gorras",
+            "buscador-placeholder": "Buscar productos...", // Placeholder del input de búsqueda
+            "producto1": "Vestido típico salvadoreño",
+            "producto1-desc": "Vestido tradicional con los colores de la bandera de El Salvador, adornado con encajes y escudos nacionales.",
+            "producto2": "Llavero artesanal de colibrí",
+            "producto2-desc": "Hecho a mano con mostacillas de colores, inspirado en la fauna salvadoreña.",
+            "producto3": "Gorra estilo artesanal con diseño taurino",
+            "producto3-desc": "Gorra con bordados culturales salvadoreños y diseño de toro.",
+            "producto4": "Vestido típico infantil azul",
+            "producto4-desc": "Vestido tradicional para niña, con bordados artesanales y encaje floral.",
+            "producto5": "Llavero artesanal de delfín con cuentas",
+            "producto5-desc": "Llavero hecho a mano con cuentas azules representando un delfín del mar salvadoreño.",
+            "producto6": "Vestido típico salvadoreño azul",
+            "producto6-desc": "Vestido tradicional de El Salvador, confeccionado en tela satinada azul con encajes blancos, ideal para presentaciones culturales o celebraciones patrias.",
+
+            // --- Navegación (genérica, para todas las páginas) ---
+            "nav-inicio": "Inicio",
+            "nav-historia": "Historia",
+            "nav-productos": "Productos",
+            "nav-contacto": "Contacto",
+            "nav-preguntas": "Preguntas"
         },
         en: {
             bienvenida: "Welcome to Artesanías Conchita",
@@ -95,43 +121,36 @@ document.addEventListener("DOMContentLoaded", () => {
             objetivo: "Handicraft Business",
             // Contact and Location
             "titulo-contacto": "Contact and Location",
-            // La dirección ahora incluye la etiqueta strong directamente en el texto
             "direccion": "<strong>Address:</strong> 4th East Street, Municipal Market No. 1, Local No. 14, Usulután.",
-            "visitar-facebook": "Visit our Facebook", // Texto para el botón
+            "visitar-facebook": "Visit our Facebook",
             "nombre-facebook": "@ArtesaníasConchita",
-            // End Contact and Location
-            preguntasTitulo: "Frequently Asked Questions",
+            // Frequently Asked Questions
+            "preguntas-titulo": "Frequently Asked Questions",
+            "faq-q1": "What is your location?",
+            "faq-a1": "Our store is located at 4th East Street, Municipal Market No. 1, Local No. 14, in Usulután.",
+            "faq-q2": "What is the procedure to purchase your products?",
+            "faq-a2": "To make a purchase, we invite you to visit our physical store directly in Usulután.",
+            "faq-q3": "Do you offer home delivery service?",
+            "faq-a3": "No, currently all purchases must be made in person at our establishment.",
+            "faq-q4": "Is it possible to place personalized orders?",
+            "faq-a4": "For now, it depends on the type of product you wish to customize.",
+            "faq-q5": "Do you have an online sales platform?",
+            "faq-a5": "We do not have an online store. All sales are made exclusively at our physical location.",
+            "faq-q6": "What is the origin of your handcrafted products?",
+            "faq-a6": "Most of our products are of Salvadoran origin. However, we also offer a selection of handicrafts from other Central American countries.",
+            "faq-q7": "What variety of handicrafts do you offer?",
+            "faq-a7": "Our offer includes keychains, caps, traditional costumes, ceramic items, textiles, and a variety of other handcrafted products.",
+            "faq-q8": "What are your store hours?",
+            "faq-a8": "We are available during the commercial hours established by Municipal Market No.1 in Usulután. These are from 8:00 am to 4:00 pm.",
+            "faq-q9": "What is the direct contact method for your business?",
+            "faq-a9": "You can contact us directly by sending us a message via our WhatsApp number.",
+            // End Frequently Asked Questions
             tituloMision: "Mission",
             parrafoMision: `At Artesanías Conchita, our mission is to transform tradition into creativity, offering handcrafted pieces that capture the essence and authenticity of our culture. We are committed to supporting local artisans, promoting traditional techniques and sustainable materials to create unique products that enrich the lives of our customers. We value quality, originality, and environmental responsibility in every creation, always striving to make each piece a reflection of the dedication and passion we put into our work.`,
             tituloVision: "Vision",
             parrafoVision: `At Artesanías Conchita, we aspire to be the leading reference in the world of handicrafts, recognized for our excellence in the quality and authenticity of our products. We envision a future in which our pieces not only beautify homes and spaces but also inspire a deeper appreciation for cultural traditions and handmade art. We aim to foster a positive impact on the community and the environment, serving as a bridge between the artisanal legacy and new generations of art enthusiasts.`,
             tituloValores: "Company Values",
             galeriaHistoria: "Our History Gallery",
-            productos: "Products",
-            // Navigation (Coinciden con los IDs del HTML)
-            "nav-inicio": "Home",
-            "nav-historia": "History",
-            "nav-productos": "Products",
-            "nav-contacto": "Contact",
-            "nav-preguntas": "FAQ",
-            // End Navigation
-            filtroTodas: "All categories",
-            filtroVestidos: "Dresses",
-            filtroLlaveros: "Keychains",
-            filtroGorras: "Caps",
-            placeholderBuscar: "Search products...",
-            producto1: "Typical Salvadoran Dress",
-            producto1desc: "Traditional dress with the colors of El Salvador's flag, decorated with lace and national emblems.",
-            producto2: "Handmade Hummingbird Keychain",
-            producto2desc: "Handcrafted with colorful beads, inspired by Salvadoran wildlife.",
-            producto3: "Artisan Cap with Bull Design",
-            producto3desc: "Cap with Salvadoran cultural embroidery and bull design.",
-            producto4: "Blue Traditional Children's Dress",
-            producto4desc: "Traditional girl's dress with handmade embroidery and floral lace.",
-            producto5: "Dolphin Beaded Keychain",
-            producto5desc: "Handmade keychain with blue beads representing a Salvadoran sea dolphin.",
-            producto6: "Blue Salvadoran Typical Dress",
-            producto6desc: "Traditional Salvadoran dress made of blue satin fabric with white lace, ideal for cultural presentations or patriotic celebrations.",
             textoObjetivo: `Artesanías Conchita aims to offer unique, high-quality handcrafted products created with care by talented local artisans. We specialize in handmade items ranging from ceramics and textiles to jewelry and decorative objects, providing customers with authentic traditional pieces from El Salvador and neighboring countries to decorate homes or give as gifts. Each product reflects the tradition and art of past generations, supporting fair trade and preserving artisanal techniques, while offering customers products that tell stories and hold special cultural value.`,
             tituloHistoria: "History of Artesanías Conchita",
             valor1: "Honesty",
@@ -147,10 +166,39 @@ document.addEventListener("DOMContentLoaded", () => {
             parrafoHistoria: `In the 90s, Celenia began her journey in the world of commerce selling shoes. However, due to increased competition, her business did not prosper. It was then that her mother suggested venturing into the sale of handicrafts, a little-explored market in Usulután.<br><br>She started by selling keychains in a small shop at Market Number 1 in Usulután. Sourcing products was not easy, as artisans and suppliers were located in San Salvador and La Palma. Celenia traveled constantly by bus to stock up, facing difficulties in transporting goods. Over time, she managed to acquire her own vehicle, which facilitated the expansion of her business.<br><br>Originally, her business was named Artesanías Helen in honor of her daughter. However, she recently changed the name to Artesanías Conchita, in tribute to her mother, who was key to the business's founding.<br><br>Today, Artesanías Conchita is a benchmark in the sale of Salvadoran handicrafts, attracting both local and foreign customers. With each piece sold, a piece of the culture and tradition of El Salvador.`,
             tituloMisionVision: "Mission and Vision of the company",
             labelIdioma: "🌐 Language:",
-            // Footer
+            // Footer (genérico, usar para todas las páginas)
             "footer-texto": "© 2025 Artesanías Conchita",
-            // Header
-            "nombre-empresa": "Artesanías Conchita"
+            // Header (genérico, usar para todas las páginas)
+            "nombre-empresa-header": "Artesanías Conchita",
+            "modo-oscuro-toggle-text": "🌙 Change mode",
+
+            // --- Textos específicos de la página de Productos (si solo aparecen ahí) ---
+            "productos-titulo-pagina": "Products - Artesanías Conchita", // Título de la pestaña de productos
+            "productos-seccion-titulo": "Products",
+            "filtro-todas": "All categories",
+            "filtro-vestidos": "Dresses",
+            "filtro-llaveros": "Keychains",
+            "filtro-gorras": "Caps",
+            "buscador-placeholder": "Search products...",
+            "producto1": "Typical Salvadoran Dress",
+            "producto1-desc": "Traditional dress with the colors of El Salvador's flag, decorated with lace and national emblems.",
+            "producto2": "Handmade Hummingbird Keychain",
+            "producto2-desc": "Handcrafted with colorful beads, inspired by Salvadoran wildlife.",
+            "producto3": "Artisan Cap with Bull Design",
+            "producto3-desc": "Cap with Salvadoran cultural embroidery and bull design.",
+            "producto4": "Blue Traditional Children's Dress",
+            "producto4-desc": "Traditional girl's dress with handmade embroidery and floral lace.",
+            "producto5": "Dolphin Beaded Keychain",
+            "producto5-desc": "Handmade keychain with blue beads representing a Salvadoran sea dolphin.",
+            "producto6": "Blue Salvadoran Typical Dress",
+            "producto6-desc": "Traditional Salvadoran dress made of blue satin fabric with white lace, ideal for cultural presentations or patriotic celebrations.",
+
+            // --- Navegación (genérica, para todas las páginas) ---
+            "nav-inicio": "Home",
+            "nav-historia": "History",
+            "nav-productos": "Products",
+            "nav-contacto": "Contact",
+            "nav-preguntas": "FAQ"
         }
     };
 
@@ -161,51 +209,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Lista de IDs y su texto correspondiente en el idioma seleccionado
         const ids = [
+            // Textos generales que pueden estar en todas las páginas (con IDs genéricos)
             ["bienvenida", t.bienvenida],
             ["subtitulo", t.subtitulo],
             ["objetivo", t.objetivo],
-            // Contacto y Ubicación
             ["titulo-contacto", t["titulo-contacto"]],
             ["direccion", t["direccion"]],
-            // ["visitar-facebook", t["visitar-facebook"]], // NO USAR AQUÍ, se maneja de forma especial
             ["nombre-facebook", t["nombre-facebook"]],
-            // Fin Contacto y Ubicación
-            ["preguntas-titulo", t.preguntasTitulo],
+            ["preguntas-titulo", t["preguntas-titulo"]],
+            ["faq-q1", t["faq-q1"]],
+            ["faq-a1", t["faq-a1"]],
+            ["faq-q2", t["faq-q2"]],
+            ["faq-a2", t["faq-a2"]],
+            ["faq-q3", t["faq-q3"]],
+            ["faq-a3", t["faq-a3"]],
+            ["faq-q4", t["faq-q4"]],
+            ["faq-a4", t["faq-a4"]],
+            ["faq-q5", t["faq-q5"]],
+            ["faq-a5", t["faq-a5"]],
+            ["faq-q6", t["faq-q6"]],
+            ["faq-a6", t["faq-a6"]],
+            ["faq-q7", t["faq-q7"]],
+            ["faq-a7", t["faq-a7"]],
+            ["faq-q8", t["faq-q8"]],
+            ["faq-a8", t["faq-a8"]],
+            ["faq-q9", t["faq-q9"]],
+            ["faq-a9", t["faq-a9"]],
             ["titulo-mision", t.tituloMision],
             ["parrafo-mision", t.parrafoMision],
             ["titulo-vision", t.tituloVision],
             ["parrafo-vision", t.parrafoVision],
             ["titulo-valores", t.tituloValores],
             ["galeria-historia", t.galeriaHistoria],
-            ["productos", t.productos],
-            // Navegación (Coinciden con los IDs del HTML)
-            ["nav-inicio", t["nav-inicio"]],
-            ["nav-historia", t["nav-historia"]],
-            ["nav-productos", t["nav-productos"]],
-            ["nav-contacto", t["nav-contacto"]],
-            ["nav-preguntas", t["nav-preguntas"]],
-            // Fin Navegación
-            ["filtro-todas", t.filtroTodas],
-            ["filtro-vestidos", t.filtroVestidos],
-            ["filtro-llaveros", t.filtroLlaveros],
-            ["filtro-gorras", t.filtroGorras],
-            ["buscar-productos", t.placeholderBuscar],
-            ["producto1", t.producto1],
-            ["producto1-desc", t.producto1desc],
-            ["producto2", t.producto2],
-            ["producto2-desc", t.producto2desc],
-            ["producto3", t.producto3],
-            ["producto3-desc", t.producto3desc],
-            ["producto4", t.producto4],
-            ["producto4-desc", t.producto4desc],
-            ["producto5", t.producto5],
-            ["producto5-desc", t.producto5desc],
-            ["producto6", t.producto6],
-            ["producto6-desc", t.producto6desc],
             ["texto-objetivo", t.textoObjetivo],
             ["titulo-historia", t.tituloHistoria],
-            ["parrafo-historia", t.parrafoHistoria],
-            ["titulo-mision-vision", t.tituloMisionVision],
             ["valor1", t.valor1],
             ["valor1-desc", t.valor1Desc],
             ["valor2", t.valor2],
@@ -216,11 +253,40 @@ document.addEventListener("DOMContentLoaded", () => {
             ["valor4-desc", t.valor4Desc],
             ["valor5", t.valor5],
             ["valor5-desc", t.valor5Desc],
-            ["label-idioma", t.labelIdioma],
-            // Footer
-            ["footer-texto", t["footer-texto"]], // Corregido: Ahora es un array
-            // Header
-            ["nombre-empresa", t["nombre-empresa"]] // Corregido: Ahora es un array
+            ["parrafo-historia", t.parrafoHistoria],
+            ["titulo-mision-vision", t.tituloMisionVision],
+            ["label-idioma-productos", t.labelIdioma], // Si solo este label tiene este ID, se mantendrá aquí. Si hay un label de idioma en cada página con el mismo ID, mejor cambiar a "label-idioma".
+            ["footer-texto", t["footer-texto"]], // ID para el footer, debe ser consistente en todas las páginas
+            ["nombre-empresa-header", t["nombre-empresa-header"]],
+            ["modo-oscuro-toggle-text", t["modo-oscuro-toggle-text"]],
+
+            // --- IDs de Navegación (ahora genéricos para todas las páginas) ---
+            ["nav-inicio", t["nav-inicio"]],
+            ["nav-historia", t["nav-historia"]],
+            ["nav-productos", t["nav-productos"]],
+            ["nav-contacto", t["nav-contacto"]],
+            ["nav-preguntas", t["nav-preguntas"]],
+
+            // --- Textos específicos de la página de Productos (Mantener estos si solo existen en productos.html) ---
+            ["productos-titulo-pagina", t["productos-titulo-pagina"]], // Título de la pestaña de productos
+            ["productos-seccion-titulo", t["productos-seccion-titulo"]],
+            ["filtro-todas", t["filtro-todas"]],
+            ["filtro-vestidos", t["filtro-vestidos"]],
+            ["filtro-llaveros", t["filtro-llaveros"]],
+            ["filtro-gorras", t["filtro-gorras"]],
+            // "buscador" se manejará por su placeholder
+            ["producto1", t.producto1],
+            ["producto1-desc", t["producto1-desc"]],
+            ["producto2", t.producto2],
+            ["producto2-desc", t["producto2-desc"]],
+            ["producto3", t.producto3],
+            ["producto3-desc", t["producto3-desc"]],
+            ["producto4", t.producto4],
+            ["producto4-desc", t["producto4-desc"]],
+            ["producto5", t.producto5],
+            ["producto5-desc", t["producto5-desc"]],
+            ["producto6", t.producto6],
+            ["producto6-desc", t["producto6-desc"]]
         ];
 
         ids.forEach(([id, texto]) => {
@@ -232,13 +298,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     elemento.textContent = texto;
                 }
                 // Usar innerHTML para párrafos con saltos de línea (br) o para texto con negrita (strong)
-                else if (id === "parrafo-historia" || id === "parrafo-mision" || id === "parrafo-vision" || id === "texto-objetivo" || id === "direccion") {
+                else if (id.startsWith("faq-a") || id.includes("-desc") || id === "parrafo-historia" || id === "parrafo-mision" || id === "parrafo-vision" || id === "texto-objetivo" || id === "direccion") {
                     elemento.innerHTML = texto;
                 }
                 // Actualizar el título de la página en la pestaña del navegador
-                else if (id === "titulo-contacto") {
-                    document.title = texto + " - Artesanías Conchita"; // Mantener el sufijo de la empresa
-                    elemento.textContent = texto; // También actualiza el h2 en la página
+                // Esta lógica se vuelve un poco más compleja si quieres un título dinámico para cada página.
+                // Para simplificar, si el ID es "productos-titulo-pagina", actualiza ese, sino, déjalo.
+                // Idealmente, cada página tendría su propio ID de título de pestaña.
+                else if (id === "productos-titulo-pagina") {
+                    document.title = texto;
                 }
                 else {
                     elemento.textContent = texto;
@@ -250,6 +318,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const botonFacebook = document.getElementById("boton-facebook");
         if (botonFacebook) {
             botonFacebook.textContent = t["visitar-facebook"];
+        }
+
+        // Manejo específico del placeholder para el buscador (solo en productos.html)
+        const buscadorInput = document.getElementById("buscador");
+        if (buscadorInput) {
+            buscadorInput.placeholder = t["buscador-placeholder"];
+        }
+
+        // Si tienes un ID específico para el label de idioma en otras páginas, cámbialo a "label-idioma"
+        // y úsalo en el objeto de traducciones. Si solo lo tienes en productos.html y por eso tiene "productos",
+        // entonces déjalo como está. Por consistencia, podríamos cambiarlo a "label-idioma" en todas las páginas
+        // y usar solo "labelIdioma" en las traducciones.
+        const labelIdiomaElement = document.getElementById("label-idioma"); // Asumiendo que ahora usarás un ID genérico "label-idioma" en todas las páginas
+        if (labelIdiomaElement) {
+            labelIdiomaElement.textContent = t.labelIdioma;
+        } else {
+            // Si el ID "label-idioma-productos" aún existe en alguna página, lo maneja aquí.
+            const labelIdiomaProductosElement = document.getElementById("label-idioma-productos");
+            if (labelIdiomaProductosElement) {
+                labelIdiomaProductosElement.textContent = t.labelIdioma;
+            }
         }
     }
 
