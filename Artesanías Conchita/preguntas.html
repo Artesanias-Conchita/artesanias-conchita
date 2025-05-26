@@ -1,236 +1,311 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title id="page-title">Preguntas Frecuentes - Artesanías Conchita</title>
-  <link rel="stylesheet" href="estilos.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 40px;
-      background-color: #fadadd;
-      color: #000;
-    }
+    <meta charset="UTF-8">
+    <title id="page-title">Preguntas Frecuentes - Artesanías Conchita</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 40px 40px 40px; /* Margen a los lados y abajo, 0 arriba */
+            margin-top: 10px; /* ¡Ajuste clave aquí para subir el contenido! */
+            background-color: #fadadd;
+            color: #000;
+        }
 
-    body.modo-oscuro {
-      background-color: #121212;
-      color: #f0f0f0;
-    }
+        body.modo-oscuro {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
 
-    body.modo-oscuro a {
-      color: #fbcba4;
-    }
+        body.modo-oscuro a {
+            color: #fbcba4;
+        }
 
-    body.modo-oscuro nav a {
-      background-color: #444;
-      color: white;
-    }
+        body.modo-oscuro nav a {
+            background-color: #444;
+            color: white;
+        }
 
-    body.modo-oscuro nav a:hover {
-      background-color: #666;
-    }
+        body.modo-oscuro nav a:hover {
+            background-color: #666;
+        }
 
-    body.modo-oscuro nav a.active {
-      background-color: #888;
-    }
+        body.modo-oscuro nav a.active {
+            background-color: #888;
+        }
 
-    body.modo-oscuro header {
-      background-color: #1e1e1e;
-    }
+        body.modo-oscuro header {
+            background-color: #1e1e1e;
+        }
 
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
+        /*
+        * CONTROLES SUPERIORES (MODO OSCURO E IDIOMA) - AHORA DENTRO DEL FLUJO NORMAL
+        */
+        #controles-fijos {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alinea a la derecha dentro de su espacio */
+            gap: 15px; /* Espacio entre los botones */
+            padding: 10px 0px; /* Sin padding lateral en el contenedor, se ajusta con margin-right */
+            border-radius: 5px;
+            margin-bottom: 20px; /* Espacio debajo del contenedor */
+            margin-top: 0; /* Asegura que esté arriba */
+            margin-right: 40px; /* Ajuste para el margen del body */
+            width: 100%; /* Asegura que ocupe el ancho disponible para alinear a la derecha */
+            box-sizing: border-box; /* Para que el padding no añada al ancho */
+            position: relative; /* Para que margin-top sea efectivo */
+            left: 0; /* Asegura que no haya desplazamiento inesperado */
+            top: 0; /* Asegura que no haya desplazamiento inesperado */
+            z-index: 10; /* Para asegurar que esté encima de otros elementos si hay superposición */
+        }
 
-    nav {
-      margin-top: 10px;
-      display: flex;
-    }
+        body.modo-oscuro #controles-fijos {
+            /* background-color: rgba(30, 30, 30, 0.85); */ /* Eliminado el fondo en modo oscuro también */
+            color: white;
+        }
 
-    nav a {
-      text-decoration: none;
-      color: #444;
-      background-color: #fadadd;
-      padding: 10px 15px;
-      margin-left: 5px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+        #modo-oscuro-toggle,
+        #idioma {
+            cursor: pointer;
+            padding: 10px 15px; /* Padding de los botones */
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #ffffff; /* Fondo BLANCO para los botones en MODO CLARO */
+            color: #444;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra para los botones */
+        }
 
-    nav a:hover {
-      background-color: #ffd8a9;
-    }
+        #modo-oscuro-toggle:hover,
+        #idioma:hover {
+            background-color: #ffd8a9;
+        }
 
-    nav a.active {
-      background-color: #e0b0b0;
-    }
+        body.modo-oscuro #modo-oscuro-toggle,
+        body.modo-oscuro #idioma {
+            background-color: #444; /* Fondo de los botones en modo oscuro */
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Sombra más pronunciada en modo oscuro */
+        }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+        body.modo-oscuro #modo-oscuro-toggle:hover,
+        body.modo-oscuro #idioma:hover {
+            background-color: #666;
+        }
 
-    .faq {
-      max-width: 800px;
-      margin: 0 auto;
-    }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra sutil para destacarlo */
+        }
 
-    .faq-item {
-      margin-bottom: 20px;
-      padding: 15px;
-      background-color: #fff7f0;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+        nav {
+            /* margin-top: 10px; */ /* Eliminado para alineación directa con flexbox */
+            display: flex;
+            gap: 5px; /* Espacio entre los enlaces de navegación */
+        }
 
-    .faq-item h3 {
-      margin-bottom: 10px;
-      color: #333;
-    }
+        nav a {
+            text-decoration: none;
+            color: #444;
+            background-color: #fadadd;
+            padding: 10px 15px;
+            /* margin-left: 5px; */ /* Eliminado, 'gap' ya maneja el espaciado */
+            border-radius: 5px;
+            font-weight: bold;
+            white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+        }
 
-    .faq-item p {
-      margin: 0;
-      color: #555;
-    }
+        nav a:hover {
+            background-color: #ffd8a9;
+        }
 
-    #controles-fijos {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 1000;
-    }
+        nav a.active {
+            background-color: #e0b0b0;
+            color: #000; /* Asegura color oscuro para activo en modo claro */
+        }
 
-    body.modo-oscuro #controles-fijos {
-      background-color: rgba(30, 30, 30, 0.85);
-      color: white;
-    }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    #modo-oscuro-toggle,
-    #idioma {
-      cursor: pointer;
-      padding: 0.3rem 0.6rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      background-color: transparent;
-      color: inherit;
-    }
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    #modo-oscuro-toggle:hover,
-    #idioma:hover {
-      background-color: #eee;
-    }
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff7f0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    body.modo-oscuro #modo-oscuro-toggle:hover,
-    body.modo-oscuro #idioma:hover {
-      background-color: #444;
-    }
+        body.modo-oscuro .faq-item {
+            background-color: #222;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
 
-    @media (max-width: 600px) {
-      #controles-fijos {
-        top: 0.5rem;
-        right: 0.5rem;
-        flex-direction: column;
-        align-items: flex-end;
-        padding: 0.5rem;
-        gap: 0.3rem;
-      }
-    }
-  </style>
+        .faq-item h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        body.modo-oscuro .faq-item h3 {
+            color: #f0f0f0;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: #555;
+        }
+
+        body.modo-oscuro .faq-item p {
+            color: #ccc;
+        }
+
+        footer {
+            text-align:center;
+            margin-top:30px;
+        }
+
+        /* MEDIA QUERIES PARA RESPONSIVIDAD */
+        @media (max-width: 960px) {
+            #controles-fijos {
+                margin-right: auto; /* Centrar el contenedor en pantallas más pequeñas */
+                margin-left: auto;
+                justify-content: center; /* Centra los elementos cuando está auto-margin */
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 10px 20px 20px 20px; /* Reducir márgenes en móviles */
+            }
+            #controles-fijos {
+                flex-direction: column;
+                align-items: flex-end; /* Alinea los botones a la derecha */
+                padding: 0.5rem;
+                gap: 0.3rem;
+                margin-right: 20px; /* Ajuste de margen para pantallas pequeñas */
+                justify-content: flex-end; /* Asegura la alineación a la derecha en columna */
+                width: auto; /* Permite que el ancho se ajuste al contenido */
+            }
+            #controles-fijos button,
+            #controles-fijos select {
+                width: 100%; /* Ocupa todo el ancho disponible en columna */
+                text-align: center; /* Centra el texto en los botones */
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 5px;
+            }
+            nav {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+                align-items: flex-start;
+            }
+            nav a {
+                width: calc(100% - 30px);
+                text-align: left;
+                margin-left: 0;
+            }
+            .faq {
+                padding: 0 10px; /* Padding para el contenedor de preguntas en móviles */
+            }
+        }
+    </style>
 </head>
 <body>
 
+<div id="controles-fijos">
+    <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
+    <label for="idioma" id="label-idioma">🌐 Idioma:</label>
+    <select id="idioma">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+    </select>
+</div>
+
 <header>
-  <div style="display: flex; align-items: center;">
-    <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 120px; margin-right: 10px;">
-    <h1 id="nombre-empresa-header" style="margin: 0; font-size: 24px;">Artesanías Conchita</h1>
-  </div>
-  <nav id="menu-principal">
-    <a href="index.html" id="nav-inicio">Inicio</a>
-    <a href="historia.html" id="nav-historia">Historia</a>
-    <a href="productos.html" id="nav-productos">Productos</a>
-    <a href="contacto.html" id="nav-contacto">Contacto</a>
-    <a href="preguntas.html" class="active" id="nav-preguntas">Preguntas</a>
-  </nav>
+    <div style="display: flex; align-items: center;">
+        <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 120px; margin-right: 10px;">
+        <h1 id="nombre-empresa-header" style="margin: 0; font-size: 24px;">Artesanías Conchita</h1>
+    </div>
+    <nav id="menu-principal">
+        <a href="index.html" id="nav-inicio">Inicio</a>
+        <a href="historia.html" id="nav-historia">Historia</a>
+        <a href="productos.html" id="nav-productos">Productos</a>
+        <a href="contacto.html" id="nav-contacto">Contacto</a>
+        <a href="preguntas.html" class="active" id="nav-preguntas">Preguntas</a>
+    </nav>
 </header>
 
 <h2 id="preguntas-titulo" style="text-align: center; margin-top: 20px;">Preguntas Frecuentes</h2>
 
 <main>
-  <section class="faq">
-    <div class="faq-item">
-      <h3 id="faq-q1">¿Cuál es su ubicación?</h3>
-      <p id="faq-a1">Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután.</p>
-    </div>
+    <section class="faq">
+        <div class="faq-item">
+            <h3 id="faq-q1">¿Cuál es su ubicación?</h3>
+            <p id="faq-a1">Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q2">¿Cuál es el procedimiento para adquirir sus productos?</h3>
-      <p id="faq-a2">Para realizar una compra, le invitamos a visitar nuestra tienda física directamente en Usulután.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q2">¿Cuál es el procedimiento para adquirir sus productos?</h3>
+            <p id="faq-a2">Para realizar una compra, le invitamos a visitar nuestra tienda física directamente en Usulután.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q3">¿Ofrecen servicio de entrega a domicilio?</h3>
-      <p id="faq-a3">No, actualmente todas las compras deben realizarse de manera presencial en nuestro establecimiento.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q3">¿Ofrecen servicio de entrega a domicilio?</h3>
+            <p id="faq-a3">No, actualmente todas las compras deben realizarse de manera presencial en nuestro establecimiento.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q4">¿Es posible realizar pedidos personalizados?</h3>
-      <p id="faq-a4">Por el momento, eso depende del tipo de producto que desea personalizar.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q4">¿Es posible realizar pedidos personalizados?</h3>
+            <p id="faq-a4">Por el momento, eso depende del tipo de producto que desea personalizar.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q5">¿Disponen de una plataforma de venta en línea?</h3>
-      <p id="faq-a5">No contamos con tienda en línea. Todas las ventas se efectúan exclusivamente en nuestro local física.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q5">¿Disponen de una plataforma de venta en línea?</h3>
+            <p id="faq-a5">No contamos con tienda en línea. Todas las ventas se efectúan exclusivamente en nuestro local física.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q6">¿Cuál es el origen de sus productos artesanales?</h3>
-      <p id="faq-a6">La mayoría de nuestros productos son de origen salvadoreño. No obstante, también ofrecemos una selección de artesanías provenientes de otros países de Centroamérica.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q6">¿Cuál es el origen de sus productos artesanales?</h3>
+            <p id="faq-a6">La mayoría de nuestros productos son de origen salvadoreño. No obstante, también ofrecemos una selección de artesanías provenientes de otros países de Centroamérica.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q7">¿Cuál variedad de artesanías ofrecen?</h3>
-      <p id="faq-a7">Nuestra oferta incluye llaveros, gorras, trajes típicos, artículos de cerámica, textiles y una diversidad de otros productos artesanales.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q7">¿Cuál variedad de artesanías ofrecen?</h3>
+            <p id="faq-a7">Nuestra oferta incluye llaveros, gorras, trajes típicos, artículos de cerámica, textiles y una diversidad de otros productos artesanales.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q8">¿Cuál es el horario de atención de su tienda?</h3>
-      <p id="faq-a8">Estamos a su disposición durante el horario comercial establecido por el Mercado Municipal NO.1 de Usulután. Estos son de 8:00 am hasta las 4:00 pm.</p>
-    </div>
+        <div class="faq-item">
+            <h3 id="faq-q8">¿Cuál es el horario de atención de su tienda?</h3>
+            <p id="faq-a8">Estamos a su disposición durante el horario comercial establecido por el Mercado Municipal NO.1 de Usulután. Estos son de 8:00 am hasta las 4:00 pm.</p>
+        </div>
 
-    <div class="faq-item">
-      <h3 id="faq-q9">¿Cuál es el medio de contacto directo con su negocio?</h3>
-      <p id="faq-a9">Puede contactarnos directamente, puede enviarnos un mensaje a tráves de nuestro número de WhatsApp.</p>
-    </div>
-  </section>
+        <div class="faq-item">
+            <h3 id="faq-q9">¿Cuál es el medio de contacto directo con su negocio?</h3>
+            <p id="faq-a9">Puede contactarnos directamente, puede enviarnos un mensaje a tráves de nuestro número de WhatsApp.</p>
+        </div>
+    </section>
 </main>
 
 <footer style="text-align:center; margin-top:30px;">
-  <p id="footer-texto">© 2025 Artesanías Conchita</p>
+    <p id="footer-texto">© 2025 Artesanías Conchita</p>
 </footer>
-
-<div id="controles-fijos">
-  <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
-  <label for="idioma" id="label-idioma">🌐 Idioma:</label>
-  <select id="idioma">
-    <option value="es">Español</option>
-    <option value="en">English</option>
-  </select>
-</div>
 
 <script src="funciones.js"></script>
 </body>

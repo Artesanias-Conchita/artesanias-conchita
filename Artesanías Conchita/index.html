@@ -1,258 +1,323 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inicio | Artesanías Conchita</title>
-  <link rel="stylesheet" href="estilos.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 40px;
-      background-color: #fadadd;
-      color: #000;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inicio | Artesanías Conchita</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 40px 40px 40px; /* Margen a los lados y abajo, 0 arriba */
+            margin-top: 10px; /* ¡Ajuste clave aquí para subir el contenido! */
+            background-color: #fadadd;
+            color: #000;
+        }
 
-    body.modo-oscuro {
-      background-color: #121212;
-      color: #f0f0f0;
-    }
+        body.modo-oscuro {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
 
-    body.modo-oscuro a {
-      color: #fbcba4;
-    }
+        body.modo-oscuro a {
+            color: #fbcba4;
+        }
 
-    body.modo-oscuro nav a {
-      background-color: #444;
-      color: white;
-    }
+        body.modo-oscuro nav a {
+            background-color: #444;
+            color: white;
+        }
 
-    body.modo-oscuro nav a:hover {
-      background-color: #666;
-    }
+        body.modo-oscuro nav a:hover {
+            background-color: #666;
+        }
 
-    body.modo-oscuro nav a.active {
-      background-color: #888;
-    }
+        body.modo-oscuro nav a.active {
+            background-color: #888;
+        }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #f0f0f0;
-      margin-bottom: 20px;
-    }
+        /*
+        * CONTROLES SUPERIORES (MODO OSCURO E IDIOMA) - AHORA DENTRO DEL FLUJO NORMAL
+        */
+        #controles-fijos {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alinea a la derecha dentro de su espacio */
+            gap: 15px; /* Espacio entre los botones */
+            padding: 10px 0px; /* Sin padding lateral en el contenedor, se ajusta con margin-right */
+            /* background-color: rgba(255, 255, 255, 0.85); */ /* Eliminado el fondo */
+            border-radius: 5px;
+            /* box-shadow: 0 2px 8px rgba(0,0,0,0.2); */ /* Sombra para los botones individuales */
+            margin-bottom: 20px; /* Espacio debajo del contenedor */
+            margin-top: 0; /* Asegura que esté arriba */
+            margin-right: 40px; /* Ajuste para el margen del body */
+            width: 100%; /* Asegura que ocupe el ancho disponible para alinear a la derecha */
+            box-sizing: border-box; /* Para que el padding no añada al ancho */
+            position: relative; /* Para que margin-top sea efectivo */
+            left: 0; /* Asegura que no haya desplazamiento inesperado */
+            top: 0; /* Asegura que no haya desplazamiento inesperado */
+            z-index: 10; /* Para asegurar que esté encima de otros elementos si hay superposición */
+        }
 
-    body.modo-oscuro header {
-      background-color: #1e1e1e;
-    }
+        body.modo-oscuro #controles-fijos {
+            /* background-color: rgba(30, 30, 30, 0.85); */ /* Eliminado el fondo en modo oscuro también */
+            color: white;
+        }
 
-    header div {
-      display: flex;
-      align-items: center;
-    }
+        #modo-oscuro-toggle,
+        #idioma {
+            cursor: pointer;
+            padding: 10px 15px; /* Padding de los botones */
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #ffffff; /* Fondo BLANCO para los botones en MODO CLARO */
+            color: #444;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra para los botones */
+        }
 
-    header img {
-      width: 80px;
-      margin-right: 10px;
-    }
+        #modo-oscuro-toggle:hover,
+        #idioma:hover {
+            background-color: #ffd8a9;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
+        body.modo-oscuro #modo-oscuro-toggle,
+        body.modo-oscuro #idioma {
+            background-color: #444; /* Fondo de los botones en modo oscuro */
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Sombra más pronunciada en modo oscuro */
+        }
 
-    nav {
-      display: flex;
-    }
+        body.modo-oscuro #modo-oscuro-toggle:hover,
+        body.modo-oscuro #idioma:hover {
+            background-color: #666;
+        }
 
-    nav a {
-      text-decoration: none;
-      color: #444;
-      background-color: #fadadd;
-      padding: 10px 15px;
-      margin-left: 5px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+        /*
+        * HEADER GENERAL (SE DESPLAZARÁ CON EL SCROLL)
+        */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            margin-bottom: 20px; /* Espacio debajo del header */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra sutil para destacarlo */
+        }
 
-    nav a.active {
-      background-color: #e0b0b0;
-      color: #fff;
-    }
+        body.modo-oscuro header {
+            background-color: #1e1e1e;
+        }
 
-    nav a:hover {
-      background-color: #ffd8a9;
-    }
+        header div {
+            display: flex;
+            align-items: center;
+        }
 
-    h2 {
-      text-align: center;
-    }
+        header img {
+            width: 120px; /* Consistente con las otras páginas */
+            margin-right: 10px;
+        }
 
-    .intro {
-      margin: 0 auto;
-      max-width: 800px;
-      text-align: justify;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
 
-    footer {
-      text-align: center;
-      margin-top: 30px;
-    }
+        nav {
+            display: flex;
+            gap: 5px; /* Espacio entre los enlaces de navegación */
+        }
 
-    .carousel-container {
-      width: 500px;
-      height: 300px;
-      margin: 0 auto 30px auto;
-      overflow: hidden;
-      border-radius: 10px;
-      position: relative;
-    }
+        nav a {
+            text-decoration: none;
+            color: #444;
+            background-color: #fadadd;
+            padding: 10px 15px;
+            /* margin-left: 5px; */ /* El 'gap' ya maneja el espacio */
+            border-radius: 5px;
+            font-weight: bold;
+            white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+        }
 
-    .carousel-slide {
-      display: none;
-      width: 100%;
-      height: 100%;
-    }
+        nav a.active {
+            background-color: #e0b0b0;
+            color: #000; /* Asegura color oscuro para activo en modo claro */
+        }
 
-    .carousel-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+        nav a:hover {
+            background-color: #ffd8a9;
+        }
 
-    #controles-fijos {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 1000;
-    }
+        h2 {
+            text-align: center;
+        }
 
-    body.modo-oscuro #controles-fijos {
-      background-color: rgba(30, 30, 30, 0.85);
-      color: white;
-    }
+        .intro {
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: justify;
+        }
 
-    #modo-oscuro-toggle,
-    #idioma {
-      cursor: pointer;
-      padding: 0.3rem 0.6rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      background-color: transparent;
-      color: inherit;
-    }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+        }
 
-    #modo-oscuro-toggle:hover,
-    #idioma:hover {
-      background-color: #eee;
-    }
+        .carousel-container {
+            width: 500px;
+            height: 300px;
+            margin: 0 auto 30px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Añadida sombra para el carrusel */
+        }
 
-    body.modo-oscuro #modo-oscuro-toggle:hover,
-    body.modo-oscuro #idioma:hover {
-      background-color: #444;
-    }
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
 
-    @media (max-width: 600px) {
-      #controles-fijos {
-        top: 0.5rem;
-        right: 0.5rem;
-        flex-direction: column;
-        align-items: flex-end;
-        padding: 0.5rem;
-        gap: 0.3rem;
-      }
-    }
-  </style>
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* MEDIA QUERIES PARA RESPONSIVIDAD */
+        @media (max-width: 960px) {
+            #controles-fijos {
+                margin-right: auto; /* Centrar el contenedor en pantallas más pequeñas */
+                margin-left: auto;
+                justify-content: center; /* Centra los elementos cuando está auto-margin */
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 10px 20px 20px 20px; /* Reducir márgenes en móviles */
+            }
+            #controles-fijos {
+                flex-direction: column;
+                align-items: flex-end; /* Alinea los botones a la derecha */
+                padding: 0.5rem;
+                gap: 0.3rem;
+                margin-right: 20px; /* Ajuste de margen para pantallas pequeñas */
+                justify-content: flex-end; /* Asegura la alineación a la derecha en columna */
+                width: auto; /* Permite que el ancho se ajuste al contenido */
+            }
+            #controles-fijos button,
+            #controles-fijos select {
+                width: 100%; /* Ocupa todo el ancho disponible en columna */
+                text-align: center; /* Centra el texto en los botones */
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 5px;
+            }
+            nav {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+                align-items: flex-start;
+            }
+            nav a {
+                width: calc(100% - 30px);
+                text-align: left;
+                margin-left: 0;
+            }
+            .carousel-container {
+                width: 100%;
+                height: 250px; /* Ajustar altura para móviles */
+            }
+            .intro {
+                padding: 0 10px; /* Padding para texto en móviles */
+            }
+        }
+    </style>
 </head>
 <body>
 
+<div id="controles-fijos">
+    <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
+    <label for="idioma" id="label-idioma">🌐 Idioma:</label>
+    <select id="idioma">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+    </select>
+</div>
+
 <header>
-  <div>
-    <img src="img/logo.png" alt="Logo de Artesanías Conchita">
-    <h1 id="titulo-header">Artesanías Conchita</h1>
-  </div>
-  <nav>
-    <a href="index.html" class="active" id="nav-inicio">Inicio</a>
-    <a href="historia.html" id="nav-historia">Historia</a>
-    <a href="productos.html" id="nav-productos">Productos</a>
-    <a href="contacto.html" id="nav-contacto">Contacto</a>
-    <a href="preguntas.html" id="nav-preguntas">Preguntas</a>
-  </nav>
+    <div>
+        <img src="img/logo.png" alt="Logo de Artesanías Conchita">
+        <h1 id="titulo-header">Artesanías Conchita</h1>
+    </div>
+    <nav>
+        <a href="index.html" class="active" id="nav-inicio">Inicio</a>
+        <a href="historia.html" id="nav-historia">Historia</a>
+        <a href="productos.html" id="nav-productos">Productos</a>
+        <a href="contacto.html" id="nav-contacto">Contacto</a>
+        <a href="preguntas.html" id="nav-preguntas">Preguntas</a>
+    </nav>
 </header>
 
 <div class="carousel-container">
-  <div class="carousel-slide">
-    <img src="img/Inicio/Inicio1.jpg" alt="Imagen 1">
-  </div>
-  <div class="carousel-slide">
-    <img src="img/Inicio/Inicio2.jpg" alt="Imagen 2">
-  </div>
-  <div class="carousel-slide">
-    <img src="img/Inicio/Inicio3.jpg" alt="Imagen 3">
-  </div>
-  <div class="carousel-slide">
-    <img src="img/Inicio/Inicio4.jpg" alt="Imagen 4">
-  </div>
+    <div class="carousel-slide">
+        <img src="img/Inicio/Inicio1.jpg" alt="Imagen 1">
+    </div>
+    <div class="carousel-slide">
+        <img src="img/Inicio/Inicio2.jpg" alt="Imagen 2">
+    </div>
+    <div class="carousel-slide">
+        <img src="img/Inicio/Inicio3.jpg" alt="Imagen 3">
+    </div>
+    <div class="carousel-slide">
+        <img src="img/Inicio/Inicio4.jpg" alt="Imagen 4">
+    </div>
 </div>
 
 <script>
-  let slideIndex = 0;
-  const slides = document.querySelectorAll(".carousel-slide");
-  const numSlides = slides.length;
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+    const numSlides = slides.length;
 
-  slides[slideIndex].style.display = "block";
-
-  function nextSlide() {
-    slides[slideIndex].style.display = "none";
-    slideIndex = (slideIndex + 1) % numSlides;
     slides[slideIndex].style.display = "block";
-  }
 
-  setInterval(nextSlide, 3000);
+    function nextSlide() {
+        slides[slideIndex].style.display = "none";
+        slideIndex = (slideIndex + 1) % numSlides;
+        slides[slideIndex].style.display = "block";
+    }
+
+    setInterval(nextSlide, 3000);
 </script>
 
 <div style="text-align: center; margin-top: 50px;">
-  <h2 id="bienvenida" style="font-size: 2.5em; margin-bottom: 10px; font-weight: bold;">
-    Bienvenido a Artesanías Conchita
-  </h2>
-  <p id="subtitulo" style="font-size: 1.2em;">
-    Descubre nuestras hermosas creaciones.
-  </p>
+    <h2 id="bienvenida" style="font-size: 2.5em; margin-bottom: 10px; font-weight: bold;">
+        Bienvenido a Artesanías Conchita
+    </h2>
+    <p id="subtitulo" style="font-size: 1.2em;">
+        Descubre nuestras hermosas creaciones.
+    </p>
 </div>
 
 <main>
-  <section class="intro">
-    <h2 id="objetivo" style="text-align: center;">Negocio de venta de artesanías</h2>
-    <p id="texto-objetivo">
-      Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.
-    </p>
-
-  </section>
+    <section class="intro">
+        <h2 id="objetivo" style="text-align: center;">Negocio de venta de artesanías</h2>
+        <p id="texto-objetivo">
+            Artesanías Conchita tiene como objetivo ofrecer productos artesanales únicos y de alta calidad, creados con esmero por talentosos artesanos locales. Nos especializamos en artículos hechos a mano que van desde cerámica y textiles hasta joyería y objetos decorativos, brindando a nuestros clientes piezas auténticas tradicionales de El Salvador y de los países hermanos para decorar el hogar o regalar. Cada producto refleja la tradición y el arte de generaciones pasadas, apoyando el comercio justo y la preservación de técnicas artesanales, mientras ofrecemos a nuestros clientes productos que cuentan historias y tienen un valor cultural especial.
+        </p>
+    </section>
 </main>
 
 <footer>
-  <p id="footer-copy">© 2025 Artesanías Conchita</p>
+    <p id="footer-copy">© 2025 Artesanías Conchita</p>
 </footer>
-
-<div id="controles-fijos">
-  <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
-  <label for="idioma" id="label-idioma">🌐 Idioma:</label>
-  <select id="idioma">
-    <option value="es">Español</option>
-    <option value="en">English</option>
-  </select>
-</div>
 
 <script src="funciones.js"></script>
 </body>

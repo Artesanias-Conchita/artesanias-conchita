@@ -1,227 +1,314 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Historia - Artesanías Conchita</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        margin: 40px;
-        background-color: #fadadd; /* Fondo rosa claro */
-        color: #333; /* Color de texto por defecto para modo claro */
-    }
-
-    header {
-        text-align: center;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #f0f0f0; /* Fondo gris claro para el encabezado en modo claro */
-    }
-
-    header h1 {
-        color: #444; /* Color oscuro para el texto del h1 en modo claro */
-        margin: 0;
-        font-size: 24px;
-    }
-
-    nav {
-        margin-top: 10px;
-        padding: 10px 0;
-        border-radius: 5px;
-        display: flex; /* Asegura que los enlaces estén en fila */
-        gap: 5px; /* Espacio entre los botones de navegación */
-    }
-
-    /* Estilos de los enlaces de la navegación en MODO CLARO */
-    nav a {
-        text-decoration: none;
-        color: #444; /* Color de texto oscuro para los enlaces en modo claro */
-        background-color: #fadadd; /* Fondo igual al de productos.html */
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-weight: bold;
-        display: inline-block;
-        transition: background-color 0.3s, color 0.3s; /* Transición suave */
-    }
-
-    nav a:hover {
-        background-color: #ffd8a9; /* Hover igual al de productos.html */
-        color: #000; /* Texto negro al pasar el ratón en modo claro */
-    }
-
-    nav a.active {
-        background-color: #e0b0b0; /* Activo igual al de productos.html */
-        color: #000; /* Texto negro para el botón activo en modo claro */
-    }
-
-    h1, h2 {
-        text-align: center;
-        color: #333; /* Color de los títulos en modo claro */
-    }
-
-    .justificado {
-        text-align: justify;
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .flex-container {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px;
-        margin-top: 40px;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .flex-item {
-        flex: 1;
-    }
-
-    ul {
-        margin-top: 20px;
-        padding-left: 20px;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    li {
-        margin-bottom: 10px;
-    }
-
-    .galeria-historia {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 40px;
-    }
-
-    .galeria-historia img {
-        width: 300px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    /* 🎛️ Controles fijos: modo y idioma */
-    #controles-fijos {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        background-color: rgba(255, 255, 255, 0.85);
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        z-index: 1000;
-    }
-
-    #modo-oscuro-toggle,
-    #idioma {
-        cursor: pointer;
-        padding: 0.3rem 0.6rem;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        background-color: transparent;
-        color: inherit; /* Hereda el color del #controles-fijos */
-    }
-
-    #modo-oscuro-toggle:hover,
-    #idioma:hover {
-        background-color: #eee;
-    }
-
-    @media (max-width: 600px) {
-        #controles-fijos {
-            top: 0.5rem;
-            right: 0.5rem;
-            flex-direction: column;
-            align-items: flex-end;
-            padding: 0.5rem;
-            gap: 0.3rem;
+    <meta charset="UTF-8">
+    <title>Historia - Artesanías Conchita</title>
+    <style>
+        /*
+        * ESTILOS GENERALES DEL BODY
+        */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px; /* Margen general del body */
+            margin-top: 10px; /* ¡Ajuste clave aquí para subir el contenido! */
+            background-color: #fadadd; /* Fondo rosa claro */
+            color: #333; /* Color de texto por defecto para modo claro */
         }
-    }
 
-    /* Estilos para el modo oscuro */
-    body.modo-oscuro {
-        background-color: #121212;
-        color: #f0f0f0; /* Color general del texto en modo oscuro */
-    }
+        /*
+        * ESTILOS DEL HEADER (BARRA DE OPCIONES) - NO SE TOCAN SEGÚN SOLICITUD
+        * Mantendrá su fondo, padding y no se extenderá de lado a lado (respetando el margin del body).
+        */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f0f0f0; /* Fondo gris claro para el encabezado en modo claro */
+        }
 
-    body.modo-oscuro a {
-        color: #fbcba4; /* Color de los enlaces generales en modo oscuro */
-    }
+        header h1 {
+            color: #444; /* Color oscuro para el texto del h1 en modo claro */
+            margin: 0;
+            font-size: 24px;
+        }
 
-    body.modo-oscuro #controles-fijos {
-        background-color: rgba(30, 30, 30, 0.85);
-        color: white;
-    }
+        nav {
+            margin-top: 10px;
+            padding: 10px 0;
+            border-radius: 5px;
+            display: flex; /* Asegura que los enlaces estén en fila */
+            gap: 5px; /* Espacio entre los botones de navegación */
+        }
 
-    body.modo-oscuro #modo-oscuro-toggle:hover,
-    body.modo-oscuro #idioma:hover {
-        background-color: #444;
-    }
+        /* Estilos de los enlaces de la navegación en MODO CLARO */
+        nav a {
+            text-decoration: none;
+            color: #444; /* Color de texto oscuro para los enlaces en modo claro */
+            background-color: #fadadd; /* Fondo igual al de productos.html */
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+            transition: background-color 0.3s, color 0.3s; /* Transición suave */
+        }
 
-    /* **IMPORTANTE: Estilos específicos para el ENCABEZADO (header) en modo oscuro** */
-    body.modo-oscuro header {
-        background-color: #1a1a1a; /* Gris muy oscuro, casi negro, para el header en modo oscuro */
-    }
+        nav a:hover {
+            background-color: #ffd8a9; /* Hover igual al de productos.html */
+            color: #000; /* Texto negro al pasar el ratón en modo claro */
+        }
 
-    /* El nombre de la empresa (h1) en modo oscuro */
-    body.modo-oscuro header h1 {
-        color: #ffffff; /* Blanco para el nombre de la empresa en modo oscuro */
-    }
+        nav a.active {
+            background-color: #e0b0b0; /* Activo igual al de productos.html */
+            color: #000; /* Texto negro para el botón activo en modo claro */
+        }
 
-    /* Ajustes para los enlaces de la barra de navegación en MODO OSCURO */
-    body.modo-oscuro nav a {
-        background-color: #333333; /* Fondo de botón en modo oscuro */
-        color: white; /* Texto blanco para los enlaces en modo oscuro */
-    }
+        h1, h2 {
+            text-align: center;
+            color: #333; /* Color de los títulos en modo claro */
+        }
 
-    body.modo-oscuro nav a:hover {
-        background-color: #555555; /* Hover de botón en modo oscuro */
-    }
+        .justificado {
+            text-align: justify;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    body.modo-oscuro nav a.active {
-        background-color: #777777; /* Botón activo en modo oscuro */
-        color: white; /* Texto blanco para el botón activo en modo oscuro */
-    }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    /* Color de los títulos h1, h2 en modo oscuro */
-    body.modo-oscuro h1,
-    body.modo-oscuro h2 {
-        color: #f0f0f0; /* Blanco suave para títulos en modo oscuro */
-    }
-</style>
+        .flex-item {
+            flex: 1;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding-left: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .galeria-historia {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .galeria-historia img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /*
+        * CONTROLES SUPERIORES (MODO OSCURO E IDIOMA) - AHORA DENTRO DEL FLUJO NORMAL
+        * Se desplazarán con el contenido y no serán visibles al hacer scroll.
+        * Estilos consistentes con productos.html.
+        */
+        #controles-fijos {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alinea a la derecha dentro de su espacio */
+            gap: 15px; /* Espacio entre los botones, consistente con productos.html */
+            padding: 10px 0px; /* Reducido para subirlos, sin padding a los lados */
+            border-radius: 5px; /* Bordes redondeados del contenedor, consistente con productos.html */
+            margin-bottom: 20px; /* Espacio debajo del contenedor */
+            margin-top: 0; /* Subir más arriba (ya estaba así, pero es importante) */
+            margin-right: 40px; /* Ajuste para el margen del body */
+            width: 100%; /* Asegura que ocupe el ancho disponible para alinear a la derecha */
+            box-sizing: border-box; /* Para que el padding no añada al ancho */
+            position: relative; /* Para que margin-top sea efectivo */
+            left: 0; /* Asegura que no haya desplazamiento inesperado */
+            top: 0; /* Asegura que no haya desplazamiento inesperado */
+            z-index: 10; /* Para asegurar que esté encima de otros elementos si hay superposición */
+        }
+
+        #modo-oscuro-toggle,
+        #idioma {
+            cursor: pointer;
+            padding: 10px 15px; /* Padding de los botones, consistente con productos.html */
+            border: none;
+            border-radius: 5px; /* Bordes redondeados de los botones, consistente con productos.html */
+            font-weight: bold;
+            background-color: #ffffff; /* ¡Fondo BLANCO para los botones en MODO CLARO! */
+            color: #444; /* Color de texto para los botones */
+            white-space: nowrap; /* Evita que el texto del botón se rompa */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra para los botones */
+        }
+
+        #modo-oscuro-toggle:hover,
+        #idioma:hover {
+            background-color: #ffd8a9; /* Color de fondo al pasar el ratón, consistente con productos.html */
+        }
+
+        /* Media query para responsividad de los controles superiores */
+        @media (max-width: 960px) {
+            #controles-fijos {
+                margin-right: auto; /* Centrar el contenedor en pantallas más pequeñas */
+                margin-left: auto;
+                justify-content: center; /* Centra los elementos cuando está auto-margin */
+            }
+        }
+
+        @media (max-width: 600px) {
+            #controles-fijos {
+                flex-direction: column;
+                align-items: flex-end; /* Alinea a la derecha */
+                padding: 0.5rem;
+                gap: 0.3rem;
+                margin-right: 20px; /* Ajuste de margen para pantallas pequeñas */
+                justify-content: flex-end; /* Asegura la alineación a la derecha en columna */
+                width: auto; /* Permite que el ancho se ajuste al contenido */
+            }
+            #controles-fijos button,
+            #controles-fijos select {
+                width: 100%; /* Ocupa todo el ancho disponible en columna */
+                text-align: center; /* Centra el texto en los botones */
+            }
+            /* Ajustes adicionales para responsividad del header y nav en pantallas pequeñas */
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 5px;
+            }
+            nav {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+                align-items: flex-start;
+            }
+            nav a {
+                width: calc(100% - 30px);
+                text-align: left;
+                margin-left: 0;
+            }
+            .flex-container {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+            .justificado, ul {
+                padding: 0 20px;
+            }
+            .galeria-historia img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        /*
+        * ESTILOS PARA EL MODO OSCURO
+        */
+        body.modo-oscuro {
+            background-color: #121212;
+            color: #f0f0f0; /* Color general del texto en modo oscuro */
+        }
+
+        body.modo-oscuro a {
+            color: #fbcba4; /* Color de los enlaces generales en modo oscuro */
+        }
+
+        /* Controles superiores en modo oscuro */
+        body.modo-oscuro #controles-fijos {
+            /* background-color: #121212; */ /* Fondo del body en modo oscuro para el contenedor superior (también eliminado) */
+        }
+
+        body.modo-oscuro #modo-oscuro-toggle,
+        body.modo-oscuro #idioma {
+            background-color: #444; /* Fondo de los botones en modo oscuro, como en productos.html */
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Sombra más pronunciada en modo oscuro */
+        }
+
+        body.modo-oscuro #modo-oscuro-toggle:hover,
+        body.modo-oscuro #idioma:hover {
+            background-color: #666; /* Hover de los botones en modo oscuro, como en productos.html */
+        }
+
+        /* Header en modo oscuro - NO SE TOCA SU COMPORTAMIENTO, SOLO COLORES */
+        body.modo-oscuro header {
+            background-color: #1a1a1a; /* Gris muy oscuro, casi negro, para el header en modo oscuro */
+        }
+
+        body.modo-oscuro header h1 {
+            color: #ffffff; /* Blanco para el nombre de la empresa en modo oscuro */
+        }
+
+        /* Navegación en modo oscuro */
+        body.modo-oscuro nav a {
+            background-color: #333333; /* Fondo de botón en modo oscuro */
+            color: white; /* Texto blanco para los enlaces en modo oscuro */
+        }
+
+        body.modo-oscuro nav a:hover {
+            background-color: #555555; /* Hover de botón en modo oscuro */
+        }
+
+        body.modo-oscuro nav a.active {
+            background-color: #777777; /* Botón activo en modo oscuro */
+            color: white; /* Texto blanco para el botón activo en modo oscuro */
+        }
+
+        /* Títulos en modo oscuro */
+        body.modo-oscuro h1,
+        body.modo-oscuro h2 {
+            color: #f0f0f0; /* Blanco suave para títulos en modo oscuro */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
- <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
-    <div style="display: flex; align-items: center;">
-      <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 120px; margin-right: 10px;">
-      <h1 style="margin: 0; font-size: 24px;">Artesanías Conchita</h1>
+    <div id="controles-fijos">
+        <button id="modo-oscuro-toggle">
+            <span id="modo-oscuro-toggle-text">🌙 Cambiar modo</span>
+        </button>
+        <label for="idioma">🌐 Idioma:</label>
+        <select id="idioma">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
     </div>
-  <nav style="display: flex;">
-  <a href="index.html" id="nav-inicio">Inicio</a>
-  <a href="historia.html" class="active" id="nav-historia">Historia</a>
-  <a href="productos.html" id="nav-productos">Productos</a>
-  <a href="contacto.html" id="nav-contacto">Contacto</a>
-  <a href="preguntas.html" id="nav-preguntas">Preguntas</a>
-</nav>
-  </header>
 
-<h2 id="titulo-historia" style="text-align: center; margin-top: 20px;">Historia de Artesanías Conchita</h2>
+    <header>
+        <div style="display: flex; align-items: center;">
+            <img src="img/logo.png" alt="Logo de Artesanías Conchita" style="width: 120px; margin-right: 10px;">
+            <h1>Artesanías Conchita</h1>
+        </div>
+        <nav>
+            <a href="index.html" id="nav-inicio">Inicio</a>
+            <a href="historia.html" class="active" id="nav-historia">Historia</a>
+            <a href="productos.html" id="nav-productos">Productos</a>
+            <a href="contacto.html" id="nav-contacto">Contacto</a>
+            <a href="preguntas.html" id="nav-preguntas">Preguntas</a>
+        </nav>
+    </header>
 
-  <main>
+    <h2 id="titulo-historia">Historia de Artesanías Conchita</h2>
+
+    <main>
         <p class="justificado" id="parrafo-historia">
             En la década de los 90, Celenia inició su camino en el mundo del comercio con la venta de zapatos. Sin embargo, ante el aumento de la competencia, su negocio no prosperó. Fue entonces cuando su madre le sugirió incursionar en la venta de artesanías, un mercado poco explorado en Usulután.
             <br><br>
@@ -234,58 +321,47 @@
             Hoy en día, Artesanías Conchita es un referente en la venta de artesanías salvadoreñas, atrayendo tanto a clientes locales como extranjeros. Con cada pieza vendida, se comparte un pedazo de la cultura y tradición de El Salvador.
         </p>
 
-   <h2 id="titulo-mision-vision">Misión y Visión de la empresa.</h2>
+        <h2 id="titulo-mision-vision">Misión y Visión de la empresa.</h2>
 
-  <div class="flex-container">
-    <div class="flex-item">
-      <h2 class="centrado" id="titulo-mision">Misión</h2>
-      <p class="justificado" id="parrafo-mision">
-        "En Artesanías Conchita, nuestra misión es transformar la tradición en creatividad, ofreciendo piezas de artesanía que capturan la esencia y la autenticidad de nuestra cultura. Nos comprometemos a apoyar a los artesanos locales, promoviendo técnicas tradicionales y materiales sostenibles para crear productos únicos que enriquezcan la vida de nuestros clientes. Valoramos la calidad, la originalidad y el compromiso con el medio ambiente en cada creación, buscando siempre hacer de cada pieza un reflejo de la dedicación y la pasión que ponemos en nuestro trabajo."
-      </p>
-    </div>
-    <div class="flex-item">
-      <h2 class="centrado" id="titulo-vision">Visión</h2>
-      <p class="justificado" id="parrafo-vision">
-        "En Artesanías Conchita, aspiramos a ser el referente principal en el mundo de la artesanía, reconocido por nuestra excelencia en la calidad y la autenticidad de nuestros productos. Imaginamos un futuro en el que nuestras piezas no solo embellezcan hogares y espacios, sino que también inspiren un aprecio más profundo por las tradiciones culturales y el arte hecho a mano. Queremos fomentar un impacto positivo en la comunidad y el medio ambiente, siendo un puente entre el legado artesanal y las nuevas generaciones de apreciadores del arte."
-      </p>
-    </div>
-  </div>
+        <div class="flex-container">
+            <div class="flex-item">
+                <h2 class="centrado" id="titulo-mision">Misión</h2>
+                <p class="justificado" id="parrafo-mision">
+                    "En Artesanías Conchita, nuestra misión es transformar la tradición en creatividad, ofreciendo piezas de artesanía que capturan la esencia y la autenticidad de nuestra cultura. Nos comprometemos a apoyar a los artesanos locales, promoviendo técnicas tradicionales y materiales sostenibles para crear productos únicos que enriquezcan la vida de nuestros clientes. Valoramos la calidad, la originalidad y el compromiso con el medio ambiente en cada creación, buscando siempre hacer de cada pieza un reflejo de la dedicación y la pasión que ponemos en nuestro trabajo."
+                </p>
+            </div>
+            <div class="flex-item">
+                <h2 class="centrado" id="titulo-vision">Visión</h2>
+                <p class="justificado" id="parrafo-vision">
+                    "En Artesanías Conchita, aspiramos a ser el referente principal en el mundo de la artesanía, reconocido por nuestra excelencia en la calidad y la autenticidad de nuestros productos. Imaginamos un futuro en el que nuestras piezas no solo embellezcan hogares y espacios, sino que también inspiren un aprecio más profundo por las tradiciones culturales y el arte hecho a mano. Queremos fomentar un impacto positivo en la comunidad y el medio ambiente, siendo un puente entre el legado artesanal y las nuevas generaciones de apreciadores del arte."
+                </p>
+            </div>
+        </div>
 
-  <h2 class="centrado" id="titulo-valores" style="margin-top: 50px;">Valores de la empresa</h2>
+        <h2 class="centrado" id="titulo-valores">Valores de la empresa</h2>
 
-  <ul id="lista-valores">
-  <li><strong id="valor1">Honestidad:</strong> <span id="valor1-desc">Nos comprometemos a brindar información clara y veraz sobre nuestros productos, asegurando que cada cliente reciba artículos de calidad a precios justos.</span></li>
-  <li><strong id="valor2">Amabilidad:</strong> <span id="valor2-desc">Atendemos a cada persona con cortesía y calidez, creando un ambiente acogedor para que nuestros clientes se sientan bienvenidos y valorados.</span></li>
-  <li><strong id="valor3">Respeto:</strong> <span id="valor3-desc">Valoramos la diversidad de nuestros clientes y colaboradores, promoviendo un trato digno y cordial en cada interacción.</span></li>
-  <li><strong id="valor4">Integridad:</strong> <span id="valor4-desc">Actuamos con transparencia y ética en todas nuestras operaciones, manteniendo la confianza de nuestros clientes y proveedores.</span></li>
-  <li><strong id="valor5">Responsabilidad:</strong> <span id="valor5-desc">Nos esforzamos por cumplir con nuestros compromisos y ofrecer productos que representen con orgullo la cultura salvadoreña, garantizando un servicio de calidad.</span></li>
-</ul>
-</main>
+        <ul id="lista-valores">
+            <li><strong id="valor1">Honestidad:</strong> <span id="valor1-desc">Nos comprometemos a brindar información clara y veraz sobre nuestros productos, asegurando que cada cliente reciba artículos de calidad a precios justos.</span></li>
+            <li><strong id="valor2">Amabilidad:</strong> <span id="valor2-desc">Atendemos a cada persona con cortesía y calidez, creando un ambiente acogedor para que nuestros clientes se sientan bienvenidos y valorados.</span></li>
+            <li><strong id="valor3">Respeto:</strong> <span id="valor3-desc">Valoramos la diversidad de nuestros clientes y colaboradores, promoviendo un trato digno y cordial en cada interacción.</span></li>
+            <li><strong id="valor4">Integridad:</strong> <span id="valor4-desc">Actuamos con transparencia y ética en todas nuestras operaciones, manteniendo la confianza de nuestros clientes y proveedores.</span></li>
+            <li><strong id="valor5">Responsabilidad:</strong> <span id="valor5-desc">Nos esforzamos por cumplir con nuestros compromisos y ofrecer productos que representen con orgullo la cultura salvadoreña, garantizando un servicio de calidad.</span></li>
+        </ul>
+    </main>
 
-    <h2 class="centrado" id="galeria-historia" style="margin-top: 50px;">Galería de nuestra historia</h2>
+    <h2 class="centrado" id="galeria-historia-titulo">Galería de nuestra historia</h2>
 
     <div class="galeria-historia">
-      <img src="img/historia/historia1.jpeg" alt="Imagen historia 1">
-      <img src="img/historia/historia2.jpeg" alt="Imagen historia 2">
-      <img src="img/historia/historia3.jpeg" alt="Imagen historia 3">
-      <img src="img/historia/historia4.jpeg" alt="Imagen historia 4">
+        <img src="img/historia/historia1.jpeg" alt="Imagen historia 1">
+        <img src="img/historia/historia2.jpeg" alt="Imagen historia 2">
+        <img src="img/historia/historia3.jpeg" alt="Imagen historia 3">
+        <img src="img/historia/historia4.jpeg" alt="Imagen historia 4">
     </div>
-  </main>
 
-  <footer style="text-align: center; margin-top: 30px;">
-    <p>© 2025 Artesanías Conchita</p>
-  </footer>
+    <footer>
+        <p>© 2025 Artesanías Conchita</p>
+    </footer>
 
-  <!-- Controles fijos (modo oscuro e idioma) -->
-  <div id="controles-fijos">
-    <button id="modo-oscuro-toggle">🌙 Cambiar modo</button>
-    <label for="idioma">🌐 Idioma:</label>
-    <select id="idioma">
-      <option value="es">Español</option>
-      <option value="en">English</option>
-    </select>
-  </div>
-
- <script src="funciones.js"></script>
+    <script src="funciones.js"></script>
 </body>
 </html>

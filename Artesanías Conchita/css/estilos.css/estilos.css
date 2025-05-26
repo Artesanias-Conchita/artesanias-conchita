@@ -1,4 +1,4 @@
-:root {  
+:root {
   --color-principal: #fadadd;
   --color-secundario: #CDE8F6;
   --color-acento: #FBCBA4;
@@ -9,7 +9,8 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 40px 40px 40px; /* Consistente con los HTML: margen a los lados y abajo, 0 arriba */
+  margin-top: 10px; /* Ajuste para subir el contenido */
   font-family: Arial, sans-serif;
   background-color: var(--color-fondo);
   color: var(--color-texto);
@@ -45,12 +46,69 @@ body.modo-oscuro header {
   background-color: #1e1e1e;
 }
 
+/*
+* CONTROLES SUPERIORES (MODO OSCURO E IDIOMA) - AHORA DENTRO DEL FLUJO NORMAL
+*/
+#controles-fijos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinea a la derecha dentro de su espacio */
+  gap: 15px; /* Espacio entre los botones */
+  padding: 10px 0px; /* Sin padding lateral en el contenedor */
+  border-radius: 5px;
+  margin-bottom: 20px; /* Espacio debajo del contenedor */
+  margin-top: 0; /* Asegura que esté arriba */
+  margin-right: 40px; /* Ajuste para el margen del body */
+  width: 100%; /* Asegura que ocupe el ancho disponible para alinear a la derecha */
+  box-sizing: border-box; /* Para que el padding no añada al ancho */
+  position: relative; /* Para que margin-top sea efectivo */
+  left: 0; /* Asegura que no haya desplazamiento inesperado */
+  top: 0; /* Asegura que no haya desplazamiento inesperado */
+  z-index: 10; /* Para asegurar que esté encima de otros elementos si hay superposición */
+}
+
+body.modo-oscuro #controles-fijos {
+  color: white;
+}
+
+#modo-oscuro-toggle,
+#idioma {
+  cursor: pointer;
+  padding: 10px 15px; /* Padding de los botones */
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: #ffffff; /* Fondo BLANCO para los botones en MODO CLARO */
+  color: #444;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra para los botones */
+  font-size: 1rem; /* Asegura un tamaño de fuente consistente */
+}
+
+#modo-oscuro-toggle:hover,
+#idioma:hover {
+  background-color: var(--color-boton-hover); /* Usa la variable para el hover */
+}
+
+body.modo-oscuro #modo-oscuro-toggle,
+body.modo-oscuro #idioma {
+  background-color: #444; /* Fondo de los botones en modo oscuro */
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Sombra más pronunciada en modo oscuro */
+}
+
+body.modo-oscuro #modo-oscuro-toggle:hover,
+body.modo-oscuro #idioma:hover {
+  background-color: #666;
+}
+
 header {
   background-color: #f0f0f0;
-  padding: 1em;
+  padding: 10px 20px; /* Consistente con los HTML */
   display: flex;
-  flex-direction: column;
+  justify-content: space-between; /* Alinea elementos a los extremos */
   align-items: center;
+  margin-bottom: 20px; /* Espacio debajo del header */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra sutil para destacarlo */
 }
 
 .logo-container {
@@ -59,45 +117,50 @@ header {
 }
 
 .logo {
-  height: 60px;
+  width: 120px; /* Consistente con los HTML de las otras páginas */
+  height: auto;
   margin-right: 10px;
 }
 
 .nombre-sitio {
-  font-size: 1.5em;
+  font-size: 24px; /* Consistente con los HTML */
   font-weight: bold;
+  margin: 0; /* Elimina margen extra */
 }
 
 .menu {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1em;
-  margin-top: 0.5em;
+  gap: 5px; /* Espacio entre los enlaces de navegación */
+  margin-top: 0; /* Elimina margen extra */
 }
 
 .menu a {
   text-decoration: none;
-  color: var(--color-texto);
+  color: #444; /* Color de texto específico para enlaces de nav */
   font-weight: bold;
   background-color: var(--color-principal);
-  padding: 0.5em 1em;
+  padding: 10px 15px; /* Consistente con los HTML */
   border-radius: 5px;
+  white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
 }
 
 .menu a:hover {
   background-color: var(--color-boton-hover);
-  color: var(--color-texto);
-  text-decoration: underline;
+  color: var(--color-texto); /* Color del texto al hacer hover */
+  text-decoration: none; /* No subrayar al pasar el ratón en la navegación */
 }
 
 .menu a.active {
   background-color: var(--color-boton-activo);
-  color: var(--color-texto);
+  color: #000; /* Color oscuro para activo en modo claro */
 }
 
 main {
-  padding: 2em;
+  padding: 0 2em; /* Padding horizontal, ya el body maneja el vertical y el margen superior */
+  max-width: 1200px; /* Limitar el ancho máximo del contenido principal */
+  margin: 0 auto; /* Centrar el contenido principal */
 }
 
 .intro h1 {
@@ -127,6 +190,7 @@ footer {
   text-align: center;
   padding: 1em;
   font-weight: 600;
+  margin-top: 30px; /* Espacio superior para el footer */
 }
 
 footer a {
@@ -176,6 +240,21 @@ footer a:hover {
   transition: transform 0.3s ease-in-out;
 }
 
+body.modo-oscuro .producto {
+    background-color: #222; /* Fondo de producto en modo oscuro */
+    border-color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.modo-oscuro .producto h3 {
+    color: #f0f0f0;
+}
+
+body.modo-oscuro .producto p {
+    color: #ccc;
+}
+
+
 .producto:hover {
   transform: scale(1.05);
 }
@@ -198,84 +277,101 @@ footer a:hover {
   margin-top: 5px;
 }
 
+/* CAROUSEL - Estilos específicos si el carrusel se mantiene en index.html */
 .carousel-container {
-  overflow: hidden;
-  width: 200px;
-  height: auto;
-  margin: 20px auto;
+    width: 500px; /* Ancho fijo para el carrusel */
+    height: 300px; /* Alto fijo para el carrusel */
+    margin: 0 auto 30px auto; /* Centrar y añadir margen inferior */
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Sombra para el carrusel */
 }
 
 .carousel-slide {
-  display: none;
-  width: 100%;
+    display: none;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-slide img {
-  display: block;
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .carousel-slide:first-child {
-  display: block;
+    display: block; /* Asegura que el primer slide se muestre al cargar */
 }
 
-@media (max-width: 768px) {
+
+/* RESPONSIVIDAD */
+@media (max-width: 960px) {
+  #controles-fijos {
+    margin-right: auto; /* Centrar el contenedor en pantallas más pequeñas */
+    margin-left: auto;
+    justify-content: center; /* Centra los elementos cuando está auto-margin */
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 10px 20px 20px 20px; /* Reducir márgenes en móviles */
+  }
+  #controles-fijos {
+    top: auto; /* Desactivar top fijo */
+    right: auto; /* Desactivar right fijo */
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los botones a la derecha */
+    padding: 0.5rem;
+    gap: 0.3rem;
+    margin-right: 20px; /* Ajuste de margen para pantallas pequeñas */
+    justify-content: flex-end; /* Asegura la alineación a la derecha en columna */
+    width: auto; /* Permite que el ancho se ajuste al contenido */
+    position: relative; /* Asegura que funcione margin-top */
+  }
+  #controles-fijos button,
+  #controles-fijos select {
+    width: 100%; /* Ocupa todo el ancho disponible en columna */
+    text-align: center; /* Centra el texto en los botones */
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 5px;
+  }
+  .menu {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    align-items: flex-start;
+  }
+  .menu a {
+    width: calc(100% - 30px);
+    text-align: left;
+    margin-left: 0;
+  }
   .producto {
     width: 90%;
   }
   .galeria-historia img {
     width: 90%;
   }
-}
-
-#controles-fijos {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  z-index: 1000;
-}
-
-body.modo-oscuro #controles-fijos {
-  background-color: rgba(30, 30, 30, 0.85);
-  color: white;
-}
-
-#modo-oscuro-toggle,
-#idioma {
-  cursor: pointer;
-  padding: 0.3rem 0.6rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: transparent;
-  color: inherit;
-}
-
-#modo-oscuro-toggle:hover,
-#idioma:hover {
-  background-color: #eee;
-}
-
-body.modo-oscuro #modo-oscuro-toggle:hover,
-body.modo-oscuro #idioma:hover {
-  background-color: #444;
-}
-
-@media (max-width: 600px) {
-  #controles-fijos {
-    top: 0.5rem;
-    right: 0.5rem;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0.5rem;
-    gap: 0.3rem;
+  .carousel-container {
+    width: 100%; /* El carrusel ocupa todo el ancho disponible en móviles */
+    height: 250px; /* Ajustar altura para móviles */
+  }
+  .mapa iframe { /* Estilo específico para el mapa en la página de contacto */
+    height: 300px; /* Ajustar altura del mapa para móviles */
+  }
+  .info-contacto { /* Estilo específico para el contacto en la página de contacto */
+    flex-direction: column; /* Apilar elementos de contacto en móviles */
+  }
+  .info-contacto a {
+    width: calc(100% - 30px); /* Ajustar ancho del botón de Facebook */
+    text-align: center;
+  }
+  .faq { /* Estilo específico para el contenedor de preguntas en la página de preguntas */
+    padding: 0 10px; /* Padding para el contenedor de preguntas en móviles */
   }
 }
