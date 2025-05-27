@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
             objetivo: "Negocio de venta de artesanías",
             // Contacto y Ubicación
             "titulo-contacto": "Contacto y Ubicación",
-            "direccion": "<strong>Dirección:</strong> 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután.",
+            "direccion": "<strong>Dirección:</strong> 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután, El Salvador.",
             "visitar-facebook": "Visitar nuestro Facebook",
             "nombre-facebook": "@ArtesaníasConchita",
             // Preguntas Frecuentes
             "preguntas-titulo": "Preguntas Frecuentes",
             "faq-q1": "¿Cuál es su ubicación?",
-            "faq-a1": "Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután.",
+            "faq-a1": "Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután, El Salvador0",
             "faq-q2": "¿Cuál es el procedimiento para adquirir sus productos?",
             "faq-a2": "Para realizar una compra, le invitamos a visitar nuestra tienda física directamente en Usulután.",
             "faq-q3": "¿Ofrecen servicio de entrega a domicilio?",
@@ -121,13 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
             objetivo: "Handicraft Business",
             // Contact and Location
             "titulo-contacto": "Contact and Location",
-            "direccion": "<strong>Address:</strong> 4th East Street, Municipal Market No. 1, Local No. 14, Usulután.",
+            "direccion": "<strong>Address:</strong> 4th East Street, Municipal Market No. 1, Local No. 14, Usulután, El Salvador.",
             "visitar-facebook": "Visit our Facebook",
             "nombre-facebook": "@ArtesaníasConchita",
             // Frequently Asked Questions
             "preguntas-titulo": "Frequently Asked Questions",
             "faq-q1": "What is your location?",
-            "faq-a1": "Our store is located at 4th East Street, Municipal Market No. 1, Local No. 14, in Usulután.",
+            "faq-a1": "Our store is located at 4th East Street, Municipal Market No. 1, Local No. 14, in Usulután, El Salvador.",
             "faq-q2": "What is the procedure to purchase your products?",
             "faq-a2": "To make a purchase, we invite you to visit our physical store directly in Usulután.",
             "faq-q3": "Do you offer home delivery service?",

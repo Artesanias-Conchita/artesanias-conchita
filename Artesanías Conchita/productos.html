@@ -163,7 +163,12 @@
         }
 
         main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch; /* Ensures all product cards in a row have the same height */
             margin-top: 0; /* No se necesita margen superior especial */
+            gap: 30px;
         }
 
         .filtros {
@@ -181,12 +186,7 @@
             width: 200px;
         }
 
-        .galeria-productos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
+        /* Removed .galeria-productos CSS as main handles flex properties */
 
         .producto {
             width: 250px;
@@ -194,8 +194,11 @@
             border-radius: 10px;
             padding: 10px;
             text-align: center;
-            background-color: #fff7f0;
+            background-color: #fff7f0; /* This is the background that will stretch */
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex; /* Make the product card itself a flex container */
+            flex-direction: column; /* Stack its children (img, h3, p) vertically */
+            justify-content: space-between; /* Pushes content to top/bottom, distributing space */
         }
 
         .producto img {
@@ -215,6 +218,7 @@
             color: #666;
             margin-top: 5px;
             text-align: justify;
+            flex-grow: 1; /* This makes the paragraph fill all available vertical space */
         }
 
         footer {
@@ -301,39 +305,39 @@
 
 <main>
      <div class="producto" data-categoria="vestidos">
-         <img src="img/productos/producto1.jpeg" alt="Vestido típico salvadoreño">
-         <h3 id="producto1">Vestido típico salvadoreño</h3>
-         <p id="producto1-desc">Luce la herencia de El Salvador con este hermoso vestido, que resalta los colores de nuestra bandera y el espíritu de nuestra gente. Decorado con delicados encajes y los escudos que nos unen como salvadoreños, ideal para cualquier ocasión especial o para llevar el orgullo de nuestra tierra.</p>
+        <img src="img/productos/producto1.jpeg" alt="Vestido típico salvadoreño">
+        <h3 id="producto1">Vestido típico salvadoreño</h3>
+        <p id="producto1-desc">Luce la herencia de El Salvador con este hermoso vestido, que resalta los colores de nuestra bandera y el espíritu de nuestra gente. Decorado con delicados encajes y los escudos que nos unen como salvadoreños, ideal para cualquier ocasión especial o para llevar el orgullo de nuestra tierra.</p>
      </div>
      
      <div class="producto" data-categoria="llaveros">
-         <img src="img/productos/producto2.jpeg" alt="Colibrí Artesanal de Cuentas">
-         <h3 id="producto2">Colibrí Artesanal de Cuentas</h3>
-         <p id="producto2-desc">Esta hermosa figura de colibrí está meticulosamente elaborada a mano con pequeñas cuentas de colores vibrantes, una técnica artesanal característica de la región centroamericana. Cada pieza es única, reflejando el talento de los artesanos. Es ideal como adorno decorativo para el hogar, llavero, o para añadir un toque distintivo a bolsos y carteras, llevando consigo la esencia de la tradición y el arte local.</p>
+        <img src="img/productos/producto2.jpeg" alt="Colibrí Artesanal de Cuentas">
+        <h3 id="producto2">Colibrí Artesanal de Cuentas</h3>
+        <p id="producto2-desc">Esta hermosa figura de colibrí está meticulosamente elaborada a mano con pequeñas cuentas de colores vibrantes, una técnica artesanal característica de la región centroamericana. Cada pieza es única, reflejando el talento de los artesanos. Es ideal como adorno decorativo para el hogar, llavero, o para añadir un toque distintivo a bolsos y carteras, llevando consigo la esencia de la tradición y el arte local.</p>
      </div>
 
      <div class="producto" data-categoria="gorras">
-         <img src="img/productos/producto3.jpeg" alt="Gorra estilo artesanal con diseño taurino">
-         <h3 id="producto3">Gorra estilo artesanal con diseño taurino</h3>
-         <p id="producto3-desc">Esta gorra presenta un diseño único. Su frente de tejido tipo rafia o paja luce un bordado con el nombre "El Salvador" y el escudo nacional, junto a las letras "E" y "S". La visera está decorada con un bordado detallado de una cabeza de toro y una herradura. La parte trasera es de malla negra, ofreciendo transpirabilidad y comodidad. Un accesorio versátil y con personalidad.</p>
+        <img src="img/productos/producto3.jpeg" alt="Gorra estilo artesanal con diseño taurino">
+        <h3 id="producto3">Gorra estilo artesanal con diseño taurino</h3>
+        <p id="producto3-desc">Esta gorra presenta un diseño único. Su frente de tejido tipo rafia o paja luce un bordado con el nombre "El Salvador" y el escudo nacional, junto a las letras "E" y "S". La visera está decorada con un bordado detallado de una cabeza de toro y una herradura. La parte trasera es de malla negra, ofreciendo transpirabilidad y comodidad. Un accesorio versátil y con personalidad.</p>
      </div>
 
      <div class="producto" data-categoria="vestidos">
-         <img src="img/productos/producto4.jpeg" alt="Vestido Infantil Típico Salvadoreño">
-         <h3 id="producto4">Vestido Infantil Típico Salvadoreño</h3>
-         <p id="producto4-desc">Este encantador vestido infantil, que encarna el estilo típico salvadoreño, presenta un diseño fresco y vibrante en tono azul. Destacan sus delicados bordados blancos de motivos florales que adornan el escote y la falda, reflejando la rica tradición textil del país. La parte superior es fruncida para un ajuste cómodo y flexible, mientras que la falda cuenta con detalles de encaje y ojales que no solo realzan su belleza, sino que también le dan un movimiento gracioso. Es la prenda perfecta para celebraciones, eventos culturales o para que las más pequeñas luzcan un atuendo auténtico y lleno de la alegría y el color de las tradiciones de El Salvador.</p>
+        <img src="img/productos/producto4.jpeg" alt="Vestido Infantil Típico Salvadoreño">
+        <h3 id="producto4">Vestido Infantil Típico Salvadoreño</h3>
+        <p id="producto4-desc">Este encantador vestido infantil, que encarna el estilo típico salvadoreño, presenta un diseño fresco y vibrante en tono azul. Destacan sus delicados bordados blancos de motivos florales que adornan el escote y la falda, reflejando la rica tradición textil del país. La parte superior es fruncida para un ajuste cómodo y flexible, mientras que la falda cuenta con detalles de encaje y ojales que no solo realzan su belleza, sino que también le dan un movimiento gracioso. Es la prenda perfecta para celebraciones, eventos culturales o para que las más pequeñas luzcan un atuendo auténtico y lleno de la alegría y el color de las tradiciones de El Salvador.</p>
      </div>
 
      <div class="producto" data-categoria="llaveros">
-         <img src="img/productos/producto5.jpeg" alt="Llavero Delfín de Cuentas Artesanal Salvadoreño">
-         <h3 id="producto5"> Llavero Delfín de Cuentas Artesanal Salvadoreño</h3>
-         <p id="producto5-desc">Este llamativo llavero presenta un delfín completamente elaborado a mano con pequeñas cuentas de colores azules vibrantes, blancos y plateados, siguiendo la minuciosa tradición artesanal salvadoreña. Cada cuenta está cuidadosamente ensartada para crear una figura detallada y brillante. Es un accesorio funcional y decorativo, perfecto para organizar tus llaves, adornar tu bolso, mochila o incluso como un pequeño obsequio que lleva consigo la creatividad y el arte manual de El Salvador.</p>
+        <img src="img/productos/producto5.jpeg" alt="Llavero Delfín de Cuentas Artesanal Salvadoreño">
+        <h3 id="producto5"> Llavero Delfín de Cuentas Artesanal Salvadoreño</h3>
+        <p id="producto5-desc">Este llamativo llavero presenta un delfín completamente elaborado a mano con pequeñas cuentas de colores azules vibrantes, blancos y plateados, siguiendo la minuciosa tradición artesanal salvadoreña. Cada cuenta está cuidadosamente ensartada para crear una figura detallada y brillante. Es un accesorio funcional y decorativo, perfecto para organizar tus llaves, adornar tu bolso, mochila o incluso como un pequeño obsequio que lleva consigo la creatividad y el arte manual de El Salvador.</p>
      </div>
 
      <div class="producto" data-categoria="vestidos">
-         <img src="img/productos/producto7.jpeg" alt="Vestido de Danza Folklórica Salvadoreña">
-         <h3 id="producto6">Vestido de Danza Folklórica Salvadoreña</h3>
-         <p id="producto6-desc">Este vistoso vestido de danza folklórica, confeccionado en un vibrante tono azul satinado, es la elección perfecta para presentaciones artísticas y eventos culturales que celebran las raíces de El Salvador. Cuenta con un escote elástico con volantes y delicados adornos de encaje blanco que añaden un toque de elegancia. La falda, amplia y con múltiples capas de encaje, está diseñada para brindar un volumen impresionante y un movimiento fluido y espectacular, característico de los bailes tradicionales salvadoreños. Es un atuendo que no solo viste, sino que también realza la belleza, el ritmo y la pasión de las tradiciones locales.</p>
+        <img src="img/productos/producto7.jpeg" alt="Vestido de Danza Folklórica Salvadoreña">
+        <h3 id="producto6">Vestido de Danza Folklórica Salvadoreña</h3>
+        <p id="producto6-desc">Este vistoso vestido de danza folklórica, confeccionado en un vibrante tono azul satinado, es la elección perfecta para presentaciones artísticas y eventos culturales que celebran las raíces de El Salvador. Cuenta con un escote elástico con volantes y delicados adornos de encaje blanco que añaden un toque de elegancia. La falda, amplia y con múltiples capas de encaje, está diseñada para brindar un volumen impresionante y un movimiento fluido y espectacular, característico de los bailes tradicionales salvadoreños. Es un atuendo que no solo viste, sino que también realza la belleza, el ritmo y la pasión de las tradiciones locales.</p>
      </div>
 </main>
 
