@@ -1,48 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("modo-oscuro-toggle");
     const body = document.body;
-
-    // Cargar modo oscuro guardado
-    const modoGuardado = localStorage.getItem("modo");
-
-    if (modoGuardado === "oscuro") {
-        body.classList.add("modo-oscuro");
-        // Asegúrate de que el span dentro del botón sea el que cambie el texto
-        const toggleTextSpan = toggle?.querySelector('#modo-oscuro-toggle-text');
-        if (toggleTextSpan) toggleTextSpan.textContent = "☀️ Cambiar modo";
-    } else {
-        body.classList.remove("modo-oscuro");
-        const toggleTextSpan = toggle?.querySelector('#modo-oscuro-toggle-text');
-        if (toggleTextSpan) toggleTextSpan.textContent = "🌙 Cambiar modo";
-        localStorage.setItem("modo", "claro");
-    }
-
-    // Toggle de modo oscuro
-    toggle?.addEventListener("click", () => {
-        body.classList.toggle("modo-oscuro");
-        const modoActual = body.classList.contains("modo-oscuro") ? "oscuro" : "claro";
-        const toggleTextSpan = toggle?.querySelector('#modo-oscuro-toggle-text');
-        if (toggleTextSpan) toggleTextSpan.textContent = modoActual === "oscuro" ? "☀️ Cambiar modo" : "🌙 Cambiar modo";
-        localStorage.setItem("modo", modoActual);
-    });
-
     const idiomaSelect = document.getElementById("idioma");
+
+    // Referencias a los elementos del botón de modo y su label
+    const modoDisplayTextSpan = document.getElementById("modo-display-text"); // Span para el texto "Modo Claro/Oscuro" dentro del botón
+    const modoDisplayIconSpan = document.getElementById("modo-display-icon"); // Span para el ícono ☀️ / 🌙 dentro del botón
+    const labelCambiarModoTextSpan = document.getElementById("label-cambiar-modo-text"); // Span para el texto "Cambiar modo" del label
+    const labelCambiarModoIconSpan = document.getElementById("label-cambiar-modo-icon"); // Span para el ícono 🔄 del label (opcional)
 
     // Objeto de traducciones para todos los textos de la web
     const traducciones = {
         es: {
+            // Claves para el texto que INDICA EL MODO ACTUAL (dentro del botón)
+            modoClaroDisplay: "Modo Claro", // Texto para el botón cuando está en modo claro
+            modoOscuroDisplay: "Modo Oscuro", // Texto para el botón cuando está en modo oscuro
+            labelCambiarModo: "Cambiar modo", // Texto para el label antes del botón de modo
+
             bienvenida: "Bienvenido a Artesanías Conchita",
             subtitulo: "Descubre nuestras hermosas creaciones.",
             objetivo: "Negocio de venta de artesanías",
-            // Contacto y Ubicación
             "titulo-contacto": "Contacto y Ubicación",
             "direccion": "<strong>Dirección:</strong> 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, Usulután, El Salvador.",
             "visitar-facebook": "Visitar nuestro Facebook",
             "nombre-facebook": "@ArtesaníasConchita",
-            // Preguntas Frecuentes
             "preguntas-titulo": "Preguntas Frecuentes",
             "faq-q1": "¿Cuál es su ubicación?",
-            "faq-a1": "Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután, El Salvador0",
+            "faq-a1": "Nuestra tienda se encuentra ubicada en la 4ª Calle Oriente, Mercado Municipal No. 1, Local No. 14, en Usulután, El Salvador.",
             "faq-q2": "¿Cuál es el procedimiento para adquirir sus productos?",
             "faq-a2": "Para realizar una compra, le invitamos a visitar nuestra tienda física directamente en Usulután.",
             "faq-q3": "¿Ofrecen servicio de entrega a domicilio?",
@@ -50,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "faq-q4": "¿Es posible realizar pedidos personalizados?",
             "faq-a4": "Por el momento, eso depende del tipo de producto que desea personalizar.",
             "faq-q5": "¿Disponen de una plataforma de venta en línea?",
-            "faq-a5": "No contamos con tienda en línea. Todas las ventas se efectúan exclusivamente en nuestro local física.",
+            "faq-a5": "No contamos con tienda en línea. Todas las ventas se efectúan exclusivamente en nuestro local físico.",
             "faq-q6": "¿Cuál es el origen de sus productos artesanales?",
             "faq-a6": "La mayoría de nuestros productos son de origen salvadoreño. No obstante, también ofrecemos una selección de artesanías provenientes de otros países de Centroamérica.",
             "faq-q7": "¿Cuál variedad de artesanías ofrecen?",
@@ -58,8 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "faq-q8": "¿Cuál es el horario de atención de su tienda?",
             "faq-a8": "Estamos a su disposición durante el horario comercial establecido por el Mercado Municipal NO.1 de Usulután. Estos son de 8:00 am hasta las 4:00 pm.",
             "faq-q9": "¿Cuál es el medio de contacto directo con su negocio?",
-            "faq-a9": "Puede contactarnos directamente, puede enviarnos un mensaje a tráves de nuestro número de WhatsApp.",
-            // Fin Preguntas Frecuentes
+            "faq-a9": "Puede contactarnos directamente, puede enviarnos un mensaje a través de nuestro número de WhatsApp.",
             tituloMision: "Misión",
             parrafoMision: `En Artesanías Conchita, nuestra misión es transformar la tradición en creatividad, ofreciendo piezas de artesanía que capturan la esencia y la autenticidad de nuestra cultura. Nos comprometemos a apoyar a los artesanos locales, promoviendo técnicas tradicionales y materiales sostenibles para crear productos únicos que enriquezcan la vida de nuestros clientes. Valoramos la calidad, la originalidad y el compromiso con el medio ambiente en cada creación, buscando siempre hacer de cada pieza un reflejo de la dedicación y la pasión que ponemos en nuestro trabajo.`,
             tituloVision: "Visión",
@@ -81,20 +64,17 @@ document.addEventListener("DOMContentLoaded", () => {
             parrafoHistoria: `En los años 90, Celenia se dedicaba a vender zapatos, pero debido al aumento de la competencia, las ventas comenzaron a disminuir y el negocio no prosperó. Fue entonces cuando su madre le sugirió cambiar de giro e iniciar con la venta de artesanías, comenzando con llaveros. En ese momento, en Usulután no existían tiendas similares, por lo que decidieron abrir un pequeño local en el mercado Número 1 de la ciudad. La novedad del concepto atrajo a los primeros clientes y marcó el inicio de un nuevo camino comercial para Celenia.<br><br> Uno de los mayores retos fue la falta de artesanos y proveedores en Usulután, lo que obligaba a Celenia a viajar constantemente en autobús hacia San Salvador y La Palma, donde sí había productores de artesanías. A menudo tenía dificultades para transportar los productos, especialmente cuando eran frágiles o en grandes cantidades, ya que algunos motoristas no querían aceptarlos en el autobús. A pesar de estos obstáculos, Celenia logró mantener el negocio abastecido y en funcionamiento.<br><br> Con el tiempo, para facilitar la logística del negocio, Celenia adquirió su propio vehículo, lo cual le permitió movilizarse con mayor comodidad y eficiencia. También comenzó a importar productos artesanales desde Guatemala y Nicaragua, donde la mano de obra era más económica y los artículos eran de buena calidad. Esto le ayudó a ampliar su catálogo de productos y ofrecer precios más competitivos, lo cual atrajo a una clientela más amplia y diversa.<br><br> El negocio fue originalmente nombrado "Artesanías Helen", en honor a su hija, pero recientemente fue renombrado como "Artesanías Conchita", en homenaje a su madre, quien fue clave en la fundación del negocio. Este cambio fortaleció la identidad del emprendimiento y su vínculo con la tradición cultural salvadoreña, ya que "Conchita" es ampliamente conocida en la comunidad. Ambas tiendas se volvieron populares tanto entre locales como turistas que buscaban recuerdos o decoraciones hechas a mano con identidad nacional.<br><br> Durante festividades como Semana Santa, las fiestas agostinas, las fiestas patrias de septiembre y las celebraciones de diciembre, las ventas aumentan notablemente gracias al interés por productos típicos. Aunque hay temporadas bajas como octubre, el negocio se mantiene estable y sigue siendo un símbolo de la identidad salvadoreña. Las tiendas continúan siendo muy visitadas por personas nacionales y extranjeras que valoran el trabajo artesanal y desean llevarse un pedacito de El Salvador.`,
             tituloMisionVision: "Misión y Visión de la empresa.",
             labelIdioma: "🌐 Idioma:",
-            // Footer (genérico, usar para todas las páginas)
             "footer-texto": "© 2025 Artesanías Conchita",
-            // Header (genérico, usar para todas las páginas)
             "nombre-empresa-header": "Artesanías Conchita",
-            "modo-oscuro-toggle-text": "🌙 Cambiar modo",
 
             // --- Textos específicos de la página de Productos (si solo aparecen ahí) ---
-            "productos-titulo-pagina": "Productos - Artesanías Conchita", // Título de la pestaña de productos
+            "productos-titulo-pagina": "Productos - Artesanías Conchita",
             "productos-seccion-titulo": "Productos",
             "filtro-todas": "Todas las categorías",
             "filtro-vestidos": "Vestidos",
             "filtro-llaveros": "Llaveros",
             "filtro-gorras": "Gorras",
-            "buscador-placeholder": "Buscar productos...", // Placeholder del input de búsqueda
+            "buscador-placeholder": "Buscar productos...",
             "producto1": "Vestido típico salvadoreño",
             "producto1-desc": "Luce la herencia de El Salvador con este hermoso vestido, que resalta los colores de nuestra bandera y el espíritu de nuestra gente. Decorado con delicados encajes y escudos que nos unen, es ideal para ocasiones especiales o para llevar el orgullo de nuestra tierra. Una prenda que conecta con la identidad cultural salvadoreña.",
             "producto2": "Colibrí Artesanal de Cuentas",
@@ -116,15 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
             "nav-preguntas": "Preguntas"
         },
         en: {
+            modoClaroDisplay: "Light Mode",
+            modoOscuroDisplay: "Dark Mode",
+            labelCambiarModo: "Change mode",
+            
             bienvenida: "Welcome to Artesanías Conchita",
             subtitulo: "Discover our beautiful creations.",
             objetivo: "Handicraft Business",
-            // Contact and Location
             "titulo-contacto": "Contact and Location",
             "direccion": "<strong>Address:</strong> 4th East Street, Municipal Market No. 1, Local No. 14, Usulután, El Salvador.",
             "visitar-facebook": "Visit our Facebook",
             "nombre-facebook": "@ArtesaníasConchita",
-            // Frequently Asked Questions
             "preguntas-titulo": "Frequently Asked Questions",
             "faq-q1": "What is your location?",
             "faq-a1": "Our store is located at 4th East Street, Municipal Market No. 1, Local No. 14, in Usulután, El Salvador.",
@@ -144,11 +126,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "faq-a8": "We are available during the commercial hours established by Municipal Market No.1 in Usulután. These are from 8:00 am to 4:00 pm.",
             "faq-q9": "What is the direct contact method for your business?",
             "faq-a9": "You can contact us directly by sending us a message via our WhatsApp number.",
-            // End Frequently Asked Questions
             tituloMision: "Mission",
             parrafoMision: `At Artesanías Conchita, our mission is to transform tradition into creativity by offering handcrafted pieces that capture the essence and authenticity of our culture. We are committed to supporting local artisans, promoting traditional techniques and sustainable materials to create unique products that enrich the lives of our customers. We value quality, originality, and environmental responsibility in every creation, always striving to make each piece a reflection of the dedication and passion we put into our work.`,
             tituloVision: "Vision",
-            parrafoVision: `At Artesanías Conchita, we aspire to be the leading reference in the world of handicrafts, recognized for our excellence in the quality and authenticity of our products. We envision a future where our pieces not only beautify homes and spaces but also inspire a deeper appreciation for cultural traditions and handmade art. We aim to foster a positive impact on the community and the environment, serving as a bridge between the artisanal legacy and new generations of art appreciators.`,
+            parrafoVision: `At Artesanías Conchita, we aspire to be the leading reference in the world of handicrafts, recognized for our excellence in the quality and authenticity of our products. Imaginamos un futuro en el que nuestras piezas no solo embellezcan hogares y espacios, sino que también inspiren un aprecio más profundo por las tradiciones culturales y el arte hecho a mano. Queremos fomentar un impacto positivo en la comunidad y el medio ambiente, siendo un puente entre el legado artesanal y las nuevas generaciones de apreciadores del arte.`,
             tituloValores: "Company Values",
             galeriaHistoria: "Our History Gallery",
             textoObjetivo: `Artesanías Conchita aims to offer unique, high-quality handcrafted products created with care by talented local artisans. We specialize in handmade items ranging from ceramics and textiles to jewelry and decorative objects, providing customers with authentic traditional pieces from El Salvador and neighboring countries to decorate homes or give as gifts. Each product reflects the tradition and art of past generations, supporting fair trade and preserving artisanal techniques, while offering customers products that tell stories and hold special cultural value.`,
@@ -163,17 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
             valor4Desc: "We act with transparency and ethics in all our operations, maintaining the trust of our customers and suppliers.",
             valor5: "Responsibility",
             valor5Desc: "We strive to fulfill our commitments and offer products that proudly represent Salvadoran culture, guaranteeing quality service.",
-            parrafoHistoria: `In the 1990s, Celenia dedicated herself to selling shoes, but due to increasing competition, sales began to decline and the business failed to thrive. That’s when her mother suggested changing direction and starting a new venture in selling handicrafts, beginning with keychains. At the time, there were no similar stores in Usulután, so they decided to open a small shop in Market Number 1 of the city. The novelty of the concept attracted the first customers and marked the beginning of a new business path for Celenia.<br><br>One of the biggest challenges was the lack of artisans and suppliers in Usulután, which forced Celenia to travel regularly by bus to San Salvador and La Palma, where handicraft producers were located. She often faced difficulties transporting the products, especially when they were fragile or in large quantities, as some bus drivers refused to carry them. Despite these obstacles, Celenia managed to keep the business stocked and operational.<br><br>Over time, to improve the logistics of the business, Celenia acquired her own vehicle, which allowed her to travel more comfortably and efficiently. She also began importing handmade products from Guatemala and Nicaragua, where labor was more affordable and the items were of good quality. This helped her expand her product catalog and offer more competitive prices, attracting a broader and more diverse customer base.<br><br>The business was originally named "Artesanías Helen," in honor of her daughter, but was recently renamed "Artesanías Conchita," in tribute to her mother, who played a key role in founding the business. This change strengthened the identity of the enterprise and its connection to Salvadoran cultural tradition, as "Conchita" is well known in the community. Both shops became popular among locals and tourists looking for souvenirs or handmade decorations with national identity.<br><br>During festive seasons such as Holy Week, the August holidays, the national holidays in September, and the December celebrations, sales increase significantly due to the demand for traditional products. Although there are slower seasons like October, the business remains stable and continues to be a symbol of Salvadoran identity. The stores are still frequently visited by both national and international customers who value handcrafted work and wish to take a piece of El Salvador with them.`,
+            parrafoHistoria: `In the 1990s, Celenia dedicated herself to selling shoes, but due to increasing competition, sales began to decline and the business failed to thrive. That’s when her mother suggested changing direction and starting a new venture in selling handicrafts, beginning with keychains. At the time, there were no similar stores in Usulután, so they decided to open a small shop in Market Number 1 of the city. The novelty of the concept attracted the first customers and marked the beginning of a new business path for Celenia.<br><br>One of the biggest challenges was the lack of artisans and suppliers in Usulután, which forced Celenia to travel regularly by bus to San Salvador and La Palma, where handicraft producers were located. She often faced difficulties transporting the products, especially when they were fragile or in large quantities, as some bus drivers refused to carry them. Despite these obstacles, Celenia managed to keep the business stocked and operational.<br><br>Over time, to improve the logistics of the business, Celenia acquired her own vehicle, which allowed her to travel more comfortably and efficiently. She also began importing handmade products from Guatemala and Nicaragua, where labor was more affordable and the items were of good quality. This helped her expand her product catalog and offer more competitive prices, attracting a broader and more diverse customer base.<br><br>The business was originally named "Artesanías Helen," in honor of her daughter, but recently was renamed "Artesanías Conchita," in tribute to her mother, who played a key role in founding the business. This change strengthened the identity of the enterprise and its connection to Salvadoran cultural tradition, as "Conchita" is well known in the community. Both shops became popular among locals and tourists looking for souvenirs or handmade decorations with national identity.<br><br>During festive seasons such as Holy Week, the August holidays, the national holidays in September, and the December celebrations, sales increase significantly due to the demand for traditional products. Although there are slower seasons like October, the business remains stable and continues to be a symbol of Salvadoran identity. The stores are still frequently visited by both national and international customers who value handcrafted work and wish to take a piece of El Salvador with them.`,
             tituloMisionVision: "Mission and Vision of the company",
             labelIdioma: "🌐 Language:",
-            // Footer (genérico, usar para todas las páginas)
             "footer-texto": "© 2025 Artesanías Conchita",
-            // Header (genérico, usar para todas las páginas)
             "nombre-empresa-header": "Artesanías Conchita",
-            "modo-oscuro-toggle-text": "🌙 Change mode",
-
+        
             // --- Textos específicos de la página de Productos (si solo aparecen ahí) ---
-            "productos-titulo-pagina": "Products - Artesanías Conchita", // Título de la pestaña de productos
+            "productos-titulo-pagina": "Products - Artesanías Conchita",
             "productos-seccion-titulo": "Products",
             "filtro-todas": "All categories",
             "filtro-vestidos": "Dresses",
@@ -202,14 +180,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Función para aplicar la traducción
+    // Función para actualizar el texto y el ícono del botón de modo y su label
+    function actualizarElementosModo() {
+        const idiomaActual = localStorage.getItem("idioma") || "es";
+        const t = traducciones[idiomaActual];
+        const modoActual = body.classList.contains("modo-oscuro") ? "oscuro" : "claro";
+
+        // Actualizar ícono del botón (sol/luna)
+        if (modoDisplayIconSpan) {
+            modoDisplayIconSpan.textContent = modoActual === "oscuro" ? "🌙" : "☀️";
+        }
+        
+        // Actualizar texto del botón ("Modo Claro"/"Modo Oscuro")
+        if (modoDisplayTextSpan) {
+            modoDisplayTextSpan.textContent = modoActual === "oscuro" ? t.modoOscuroDisplay : t.modoClaroDisplay;
+        }
+
+        // Actualizar texto del label "Cambiar modo"
+        if (labelCambiarModoTextSpan) {
+            labelCambiarModoTextSpan.textContent = t.labelCambiarModo;
+        }
+        // El ícono del label (🔄) se asume que es estático, pero si alguna vez cambia, aquí iría la lógica.
+    }
+
+    // Función para aplicar la traducción a todos los elementos
     function aplicarTraduccion(lang) {
         const t = traducciones[lang];
         if (!t) return;
 
-        // Lista de IDs y su texto correspondiente en el idioma seleccionado
+        // Primero actualizamos los textos relacionados con el modo (botón y label de cambio)
+        actualizarElementosModo(); // Llama a esta función para que los elementos de modo se traduzcan correctamente
+
         const ids = [
-            // Textos generales que pueden estar en todas las páginas (con IDs genéricos)
             ["bienvenida", t.bienvenida],
             ["subtitulo", t.subtitulo],
             ["objetivo", t.objetivo],
@@ -255,12 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
             ["valor5-desc", t.valor5Desc],
             ["parrafo-historia", t.parrafoHistoria],
             ["titulo-mision-vision", t.tituloMisionVision],
-            ["label-idioma-productos", t.labelIdioma], // Si solo este label tiene este ID, se mantendrá aquí. Si hay un label de idioma en cada página con el mismo ID, mejor cambiar a "label-idioma".
-            ["footer-texto", t["footer-texto"]], // ID para el footer, debe ser consistente en todas las páginas
+            ["label-idioma", t.labelIdioma], 
+            ["footer-texto", t["footer-texto"]],
             ["nombre-empresa-header", t["nombre-empresa-header"]],
-            ["modo-oscuro-toggle-text", t["modo-oscuro-toggle-text"]],
-
-            // --- IDs de Navegación (ahora genéricos para todas las páginas) ---
+            
+            // --- IDs de Navegación (genéricos para todas las páginas) ---
             ["nav-inicio", t["nav-inicio"]],
             ["nav-historia", t["nav-historia"]],
             ["nav-productos", t["nav-productos"]],
@@ -268,13 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
             ["nav-preguntas", t["nav-preguntas"]],
 
             // --- Textos específicos de la página de Productos (Mantener estos si solo existen en productos.html) ---
-            ["productos-titulo-pagina", t["productos-titulo-pagina"]], // Título de la pestaña de productos
+            ["productos-titulo-pagina", t["productos-titulo-pagina"]],
             ["productos-seccion-titulo", t["productos-seccion-titulo"]],
             ["filtro-todas", t["filtro-todas"]],
             ["filtro-vestidos", t["filtro-vestidos"]],
             ["filtro-llaveros", t["filtro-llaveros"]],
             ["filtro-gorras", t["filtro-gorras"]],
-            // "buscador" se manejará por su placeholder
             ["producto1", t.producto1],
             ["producto1-desc", t["producto1-desc"]],
             ["producto2", t.producto2],
@@ -296,68 +296,68 @@ document.addEventListener("DOMContentLoaded", () => {
                     elemento.placeholder = texto;
                 } else if (elemento.tagName.toLowerCase() === "option") {
                     elemento.textContent = texto;
-                }
-                // Usar innerHTML para párrafos con saltos de línea (br) o para texto con negrita (strong)
-                else if (id.startsWith("faq-a") || id.includes("-desc") || id === "parrafo-historia" || id === "parrafo-mision" || id === "parrafo-vision" || id === "texto-objetivo" || id === "direccion") {
+                } else if (id.startsWith("faq-a") || id.includes("-desc") || id === "parrafo-historia" || id === "parrafo-mision" || id === "parrafo-vision" || id === "texto-objetivo" || id === "direccion") {
                     elemento.innerHTML = texto;
-                }
-                // Actualizar el título de la página en la pestaña del navegador
-                // Esta lógica se vuelve un poco más compleja si quieres un título dinámico para cada página.
-                // Para simplificar, si el ID es "productos-titulo-pagina", actualiza ese, sino, déjalo.
-                // Idealmente, cada página tendría su propio ID de título de pestaña.
-                else if (id === "productos-titulo-pagina") {
+                } else if (id === "productos-titulo-pagina") {
                     document.title = texto;
-                }
-                else {
+                } else {
                     elemento.textContent = texto;
                 }
             }
         });
 
-        // Manejo específico para el botón de Facebook, ya que no es un texto simple en un elemento genérico
         const botonFacebook = document.getElementById("boton-facebook");
         if (botonFacebook) {
             botonFacebook.textContent = t["visitar-facebook"];
         }
 
-        // Manejo específico del placeholder para el buscador (solo en productos.html)
         const buscadorInput = document.getElementById("buscador");
         if (buscadorInput) {
             buscadorInput.placeholder = t["buscador-placeholder"];
         }
 
-        // Si tienes un ID específico para el label de idioma en otras páginas, cámbialo a "label-idioma"
-        // y úsalo en el objeto de traducciones. Si solo lo tienes en productos.html y por eso tiene "productos",
-        // entonces déjalo como está. Por consistencia, podríamos cambiarlo a "label-idioma" en todas las páginas
-        // y usar solo "labelIdioma" en las traducciones.
-        const labelIdiomaElement = document.getElementById("label-idioma"); // Asumiendo que ahora usarás un ID genérico "label-idioma" en todas las páginas
-        if (labelIdiomaElement) {
-            labelIdiomaElement.textContent = t.labelIdioma;
-        } else {
-            // Si el ID "label-idioma-productos" aún existe en alguna página, lo maneja aquí.
-            const labelIdiomaProductosElement = document.getElementById("label-idioma-productos");
-            if (labelIdiomaProductosElement) {
-                labelIdiomaProductosElement.textContent = t.labelIdioma;
-            }
+        const labelIdiomaProductosElement = document.getElementById("label-idioma-productos");
+        if (labelIdiomaProductosElement) {
+            labelIdiomaProductosElement.textContent = t.labelIdioma;
         }
+    }
+
+    // Cargar modo oscuro guardado o establecer claro por defecto
+    const modoGuardado = localStorage.getItem("modo");
+    if (modoGuardado === "oscuro") {
+        body.classList.add("modo-oscuro");
+    } else {
+        body.classList.remove("modo-oscuro");
+    }
+    actualizarElementosModo(); // Llama al inicio para configurar los textos e íconos correctamente
+
+    // Toggle de modo oscuro
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            body.classList.toggle("modo-oscuro");
+            const modoActual = body.classList.contains("modo-oscuro") ? "oscuro" : "claro";
+            localStorage.setItem("modo", modoActual);
+            actualizarElementosModo(); // Actualizar todos los elementos del modo al cambiar
+        });
     }
 
     // Cargar idioma guardado o establecer español por defecto
     const idiomaGuardado = localStorage.getItem("idioma");
-
     if (idiomaGuardado) {
         aplicarTraduccion(idiomaGuardado);
         if (idiomaSelect) idiomaSelect.value = idiomaGuardado;
     } else {
         aplicarTraduccion("es");
         if (idiomaSelect) idiomaSelect.value = "es";
-        localStorage.setItem("idioma", "es"); // Guardar "es" como valor inicial
+        localStorage.setItem("idioma", "es");
     }
 
     // Cambiar idioma al seleccionar una opción
-    idiomaSelect?.addEventListener("change", (e) => {
-        const nuevoIdioma = e.target.value;
-        aplicarTraduccion(nuevoIdioma);
-        localStorage.setItem("idioma", nuevoIdioma);
-    });
+    if (idiomaSelect) {
+        idiomaSelect.addEventListener("change", (e) => {
+            const nuevoIdioma = e.target.value;
+            aplicarTraduccion(nuevoIdioma);
+            localStorage.setItem("idioma", nuevoIdioma);
+        });
+    }
 });

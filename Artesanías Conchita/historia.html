@@ -280,17 +280,24 @@
         }
     </style>
 </head>
-<body>
-    <div id="controles-fijos">
+
+<div class="header-left-group">
+    <div class="modo-switcher-group">
+        <label for="modo-oscuro-toggle" id="label-cambiar-modo">
+            <span id="label-cambiar-modo-icon">🔄</span> <span id="label-cambiar-modo-text"></span> </label>
+        
         <button id="modo-oscuro-toggle">
-            <span id="modo-oscuro-toggle-text">🌙 Cambiar modo</span>
-        </button>
-        <label for="idioma">🌐 Idioma:</label>
+            <span id="modo-display-icon"></span> <span id="modo-display-text"></span> </button>
+    </div>
+
+    <div class="idioma-switcher-group">
+        <label for="idioma" id="label-idioma">🌐 Idioma:</label>
         <select id="idioma">
             <option value="es">Español</option>
             <option value="en">English</option>
         </select>
     </div>
+</div>
 
     <header>
         <div style="display: flex; align-items: center;">
